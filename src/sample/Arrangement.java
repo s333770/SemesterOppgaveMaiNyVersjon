@@ -20,6 +20,7 @@ public class Arrangement {
 
 
 
+
     public Arrangement(String arrangement, String type, String artister, String lokale, LocalDate dato, String tidspunkt, String bilettpris, String bilettsalg, String kontaktPerson) {
         this.arrangement = arrangement;
         this.type = type;

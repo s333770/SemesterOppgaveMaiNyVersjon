@@ -1,6 +1,8 @@
 package sample;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Kontaktperson {
 
@@ -10,6 +12,9 @@ public class Kontaktperson {
     private SimpleStringProperty personSide;
     private SimpleStringProperty personFirma;
     private SimpleStringProperty personTekst;
+
+    public static ObservableList<Kontaktperson> kontaktpersonObservableList= FXCollections.observableArrayList();
+
 
     public Kontaktperson(String personNavn, String personNummer, String personEmail, String personSide, String personFirma, String personTekst) {
         this.personNavn =new SimpleStringProperty(personNavn);

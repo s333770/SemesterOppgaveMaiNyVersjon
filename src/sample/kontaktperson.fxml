@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="506.0" prefWidth="804.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.kontaktpersonController">
+   <children>
+      <TableView fx:id="tableViewKontaktperson" layoutX="42.0" layoutY="78.0" prefHeight="391.0" prefWidth="732.0">
+        <columns>
+          <TableColumn fx:id="personNavnKolonne" prefWidth="75.0" text="Navn" />
+          <TableColumn fx:id="personNummerKolonne" prefWidth="131.5" text="Personnummer" />
+            <TableColumn fx:id="personEmailKolonne" prefWidth="75.5" text="Email" />
+            <TableColumn fx:id="personSideKolonne" minWidth="0.0" prefWidth="145.5" text="Side" />
+            <TableColumn fx:id="personFirmaKolonne" prefWidth="103.0" text="Firma" />
+            <TableColumn fx:id="personAnnenInformasjonKolonne" prefWidth="125.0" text="Annen info" />
+        </columns>
+      </TableView>
+      <Label layoutX="346.0" layoutY="32.0" text="KontaktPerson">
+         <font>
+            <Font name="System Bold Italic" size="22.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

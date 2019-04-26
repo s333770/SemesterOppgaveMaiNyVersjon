@@ -14,9 +14,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.ResourceBundle;
 
 import static sample.Arrangement.arrangementObservableList;
+import static sample.Kontaktperson.kontaktpersonObservableList;
 
 
 public class ArrangementController implements Initializable {
@@ -53,15 +55,33 @@ public class ArrangementController implements Initializable {
     @FXML private TextField txtbilettsalg;
     @FXML private TextField txtkontaktPerson;
 
+    @FXML private TextField txtnavn;
+    @FXML private TextField txtpersonnummer;
+    @FXML private TextField txtemail;
+    @FXML private TextField txtnettside;
+    @FXML private TextField txtfirma;
+    @FXML private TextField txtanneninfo;
+
     @FXML
     void btnRegistrer(ActionEvent event) throws IOException {
-        arrangementObservableList.add(new Arrangement(txtarrangement.getText(),txttype.getText(),txtartister.getText(), (String) choiceBox.getValue(),txtdato.getValue(),txttidspunkt.getText(),txtbilettpris.getText(),txtbilettsalg.getText(),txtkontaktPerson.getText()));
+        arrangementObservableList.add(new Arrangement(txtarrangement.getText(),txttype.getText(),txtartister.getText(), (String) choiceBox.getValue(),txtdato.getValue(),txttidspunkt.getText(),txtbilettpris.getText(),txtbilettsalg.getText(),txtnavn.getText()));
         setTabellVerdier("arrangement", "type","artister","lokale","dato","tidspunkt","bilettpris","bilettsalg","kontaktPerson");
+        kontaktpersonObservableList.add(new Kontaktperson(txtnavn.getText(),txtpersonnummer.getText(),txtemail.getText(),txtnettside.getText(),txtfirma.getText(),txtanneninfo.getText()));
+
     }
     @FXML
     public void tilbakeTilStartside(ActionEvent event) throws IOException{
         FXMLLoader loader= new FXMLLoader();
         loader.setLocation(getClass().getResource("/sample/sample.fxml"));
+        Parent tableViewParent= loader.load();
+        Scene tableViewScene=new Scene(tableViewParent);
+        Stage window= (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(tableViewScene);
+        window.show();
+    }
+    @FXML void oversiktKontaktPerson(ActionEvent event) throws IOException{
+        FXMLLoader loader= new FXMLLoader();
+        loader.setLocation(getClass().getResource("/sample/kontaktperson.fxml"));
         Parent tableViewParent= loader.load();
         Scene tableViewScene=new Scene(tableViewParent);
         Stage window= (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -76,6 +96,7 @@ public class ArrangementController implements Initializable {
             System.out.println(arrangementObservableList.get(0).toString());
             setTabellVerdier("arrangement", "type","artister","lokale","dato","tidspunkt","bilettpris","bilettsalg","kontaktPerson");
         }
+       // arrangementObservableList.add(new Arrangement("Konsert","Konsert","Lady Gaga","Kirke",LocalDate.of(1986, Month.JULY,21),"19:00","199","100","Leif"));
 
         tableView.setItems(arrangementObservableList);
         choiceBox.getItems().addAll("Oranges","pears","Strawberries");

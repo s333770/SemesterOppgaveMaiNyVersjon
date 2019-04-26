@@ -67,12 +67,12 @@
                         <Label text="Nettside" GridPane.rowIndex="3" />
                         <Label text="Firma" GridPane.rowIndex="4" />
                         <Label text="Ekstra informasjon:" GridPane.rowIndex="5" />
-                        <TextField GridPane.columnIndex="1" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="txtnavn" GridPane.columnIndex="1" />
+                        <TextField fx:id="txtpersonnummer" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtemail" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtnettside" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="txtfirma" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="txtanneninfo" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                      </children>
                   </GridPane>
                </children>
@@ -104,5 +104,6 @@
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
+      <Button layoutX="582.0" layoutY="364.0" mnemonicParsing="false" onAction="#oversiktKontaktPerson" text="KontaktPersoner" />
    </children>
 </AnchorPane>
