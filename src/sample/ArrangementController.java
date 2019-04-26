@@ -57,21 +57,13 @@ public class ArrangementController implements Initializable {
     void btnRegistrer(ActionEvent event) throws IOException {
         arrangementObservableList.add(new Arrangement(txtarrangement.getText(),txttype.getText(),txtartister.getText(), (String) choiceBox.getValue(),txtdato.getValue(),txttidspunkt.getText(),txtbilettpris.getText(),txtbilettsalg.getText(),txtkontaktPerson.getText()));
         setTabellVerdier("arrangement", "type","artister","lokale","dato","tidspunkt","bilettpris","bilettsalg","kontaktPerson");
-
-        //System.out.println(arrangement);
-
     }
     @FXML
     public void tilbakeTilStartside(ActionEvent event) throws IOException{
         FXMLLoader loader= new FXMLLoader();
         loader.setLocation(getClass().getResource("/sample/sample.fxml"));
         Parent tableViewParent= loader.load();
-
         Scene tableViewScene=new Scene(tableViewParent);
-
-        Controller controller=loader.getController();
-        controller.initData(tableView.getSelectionModel().getSelectedItem());
-
         Stage window= (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(tableViewScene);
         window.show();
@@ -102,5 +94,9 @@ public class ArrangementController implements Initializable {
         kontaktPersonKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("kontaktPerson"));
     }
 
+    public void endreArrangementNavn(TableColumn.CellEditEvent edittedCell){
+        Arrangement valgtArrangement=tableView.getSelectionModel().getSelectedItem(); // Tar det elementet du trykker på
+        valgtArrangement.setArrangement(edittedCell.getNewValue().toString());
+    }
 
 }

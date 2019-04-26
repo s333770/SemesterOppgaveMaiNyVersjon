@@ -6,6 +6,16 @@ import javafx.collections.ObservableList;
 import java.time.LocalDate;
 
 public class Arrangement {
+    private String arrangement;
+    private String type;
+    private String artister;
+    private String lokale;
+    private LocalDate dato;
+    private String tidspunkt;
+    private String bilettpris;
+    private String bilettsalg;
+    private String kontaktPerson;
+
     public static ObservableList<Arrangement> arrangementObservableList= FXCollections.observableArrayList();
 
 
@@ -94,18 +104,6 @@ public class Arrangement {
     public void setKontaktPerson(String kontaktPerson) {
         this.kontaktPerson = kontaktPerson;
     }
-
-    private String arrangement;
-    private String type;
-    private String artister;
-    private String lokale;
-    private LocalDate dato;
-    private String tidspunkt;
-    private String bilettpris;
-    private String bilettsalg;
-    private String kontaktPerson;
-
-
 
     @Override
     public String toString() {
