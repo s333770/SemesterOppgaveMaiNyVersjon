@@ -1,8 +1,15 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.time.LocalDate;
 
 public class Arrangement {
+    public static ObservableList<Arrangement> arrangementObservableList= FXCollections.observableArrayList();
+
+
+
     public Arrangement(String arrangement, String type, String artister, String lokale, LocalDate dato, String tidspunkt, String bilettpris, String bilettsalg, String kontaktPerson) {
         this.arrangement = arrangement;
         this.type = type;
@@ -14,6 +21,7 @@ public class Arrangement {
         this.bilettsalg = bilettsalg;
         this.kontaktPerson = kontaktPerson;
     }
+
 
     public String getArrangement() {
         return arrangement;
@@ -113,6 +121,11 @@ public class Arrangement {
                 ", kontaktPerson='" + kontaktPerson + '\'' +
                 '}';
     }
+    /*
+    public static void leggTilDataObservableList(String arrangement, String type, String artister, String lokale, LocalDate dato, String tidspunkt, String bilettpris, String bilettsalg, String kontaktPerson){
+        arrangementObservableList.add(new Arrangement(arrangement,type,artister,lokale,dato,tidspunkt,bilettpris,bilettsalg,kontaktPerson));
+    }
+    */
 
 
 

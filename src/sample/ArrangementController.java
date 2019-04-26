@@ -1,7 +1,5 @@
 package sample;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,12 +14,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.ResourceBundle;
+
+import static sample.Arrangement.arrangementObservableList;
+
 
 public class ArrangementController implements Initializable {
 
-    @FXML private ChoiceBox choiceBox;
+
     @FXML
     private TableView<Arrangement> tableView;
     @FXML
@@ -46,31 +46,20 @@ public class ArrangementController implements Initializable {
     @FXML private TextField txtarrangement;
     @FXML private TextField txttype;
     @FXML private TextField txtartister;
-    @FXML private TextField txtlokale;
+    @FXML private ChoiceBox choiceBox;
     @FXML private DatePicker txtdato;
     @FXML private TextField txttidspunkt;
     @FXML private TextField txtbilettpris;
     @FXML private TextField txtbilettsalg;
     @FXML private TextField txtkontaktPerson;
 
-    ObservableList<Arrangement> arrangementObservableList= FXCollections.observableArrayList();
-
     @FXML
     void btnRegistrer(ActionEvent event) throws IOException {
-        //Vi skriver både til ett lokale objekt og et observable arraylist
-        Arrangement arrangement= new Arrangement(txtarrangement.getText(),txttype.getText(),txtartister.getText(),(String) choiceBox.getValue(),txtdato.getValue(),txttidspunkt.getText(),txtbilettpris.getText(),txtbilettsalg.getText(),txtkontaktPerson.getText());
         arrangementObservableList.add(new Arrangement(txtarrangement.getText(),txttype.getText(),txtartister.getText(), (String) choiceBox.getValue(),txtdato.getValue(),txttidspunkt.getText(),txtbilettpris.getText(),txtbilettsalg.getText(),txtkontaktPerson.getText()));
-        arrangementKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("arrangement"));
-        typeKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("type"));
-        artisterKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("artister"));
-        lokaleKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("lokale"));
-        datoKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement, LocalDate>("dato"));
-        tidspunktKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("tidspunkt"));
-        bilettprisKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("bilettpris"));
-        bilettsalgKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("bilettsalg"));
-        kontaktPersonKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("kontaktPerson"));
-        System.out.println(arrangement);
-        tableView.setItems(arrangementObservableList);
+        setTabellVerdier("arrangement", "type","artister","lokale","dato","tidspunkt","bilettpris","bilettsalg","kontaktPerson");
+
+        //System.out.println(arrangement);
+
     }
     @FXML
     public void tilbakeTilStartside(ActionEvent event) throws IOException{
@@ -86,16 +75,31 @@ public class ArrangementController implements Initializable {
         Stage window= (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(tableViewScene);
         window.show();
-
-
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        choiceBox.getItems().add("Kirke");
-        choiceBox.getItems().add("bananas");
+        Arrangement arrangement;
+        if(arrangementObservableList.size() > 0) {
+            System.out.println(arrangementObservableList.get(0).toString());
+            setTabellVerdier("arrangement", "type","artister","lokale","dato","tidspunkt","bilettpris","bilettsalg","kontaktPerson");
+        }
+
+        tableView.setItems(arrangementObservableList);
         choiceBox.getItems().addAll("Oranges","pears","Strawberries");
 
+    }
+    public void setTabellVerdier(String arrangement, String type,String artister, String lokale, String dato, String tidspunkt,String bilettPris,String bilettsalg, String kontaktPerson){
+        arrangementKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("arrangement"));
+        // leggTilDataObservableList(txtarrangement.getText(),txttype.getText(),txtartister.getText(), (String) choiceBox.getValue(),txtdato.getValue(),txttidspunkt.getText(),txtbilettpris.getText(),txtbilettsalg.getText(),txtkontaktPerson.getText());
+        typeKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("type"));
+        artisterKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("artister"));
+        lokaleKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("lokale"));
+        datoKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement, LocalDate>("dato"));
+        tidspunktKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("tidspunkt"));
+        bilettprisKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("bilettpris"));
+        bilettsalgKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("bilettsalg"));
+        kontaktPersonKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("kontaktPerson"));
     }
 
 

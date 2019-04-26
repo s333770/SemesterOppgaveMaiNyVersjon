@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -30,20 +32,28 @@ public class Controller implements Initializable{
 
 
     public void leggTilArrangement(javafx.event.ActionEvent actionEvent) throws IOException {
-        Parent parent= FXMLLoader.load(getClass().getResource("/sample/arrangement.fxml"));
+        lastInnStage(actionEvent,"/sample/arrangement.fxml");
+
+        /*Parent parent= FXMLLoader.load(getClass().getResource("/sample/arrangement.fxml"));
         Scene scene = new Scene(parent);
         Stage window=(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
+        */
 
     }
     public void bestillBiletter(javafx.event.ActionEvent actionEvent) throws IOException {
+        lastInnStage(actionEvent,"/sample/arrangement.fxml");
+
+        /*
         Parent parent= FXMLLoader.load(getClass().getResource("/sample/arrangement.fxml"));
         Scene scene = new Scene(parent);
         //Denne metoden brukes for å bytte scener:
         Stage window=(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
+        */
+
     }
 
 
@@ -58,6 +68,14 @@ public class Controller implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    }
 
+    public void lastInnStage(javafx.event.ActionEvent actionEvent,String fxmlFil)throws IOException{
+        Parent parent= FXMLLoader.load(getClass().getResource("/sample/arrangement.fxml"));
+        Scene scene = new Scene(parent);
+        //Denne metoden brukes for å bytte scener:
+        Stage window=(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
 }
