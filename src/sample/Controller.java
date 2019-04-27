@@ -111,7 +111,6 @@ public class Controller implements Initializable{
         Stage window= (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(tableViewScene);
         window.show();
-
     }
     public void setTabellVerdier(String arrangement, String type,String artister, String lokale, String dato, String tidspunkt,String bilettPris,String bilettsalg, String kontaktPerson){
         arrangementKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("arrangement"));

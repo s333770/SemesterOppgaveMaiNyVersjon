@@ -38,6 +38,28 @@ public class Kontaktperson {
     public SimpleStringProperty getPersonTekst() { return personTekst; }
     public void setPersonTekst(String personTekst) { this.personTekst = new SimpleStringProperty(personTekst); }
 
+    public SimpleStringProperty personNavnProperty() {
+        return personNavn;
+    }
+    public SimpleStringProperty personNummerProperty() {
+        return personNummer;
+    }
+    public SimpleStringProperty personEmailProperty() {
+        return personEmail;
+    }
+    public SimpleStringProperty personSideProperty() {
+        return personSide;
+    }
+    public SimpleStringProperty personFirmaProperty() {
+        return personFirma;
+    }
+    public SimpleStringProperty personTekstProperty() {
+        return personTekst;
+    }
+
+
+
+
     public String toString() {
         return getPersonNavn() + " " +
                 getPersonNummer() + " " +
