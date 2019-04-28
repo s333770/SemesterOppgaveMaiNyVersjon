@@ -32,7 +32,7 @@ public class kontaktpersonController implements Initializable {
     @FXML
     TableColumn<Kontaktperson, String> personSideKolonne;
     @FXML
-    TableColumn<Kontaktperson, LocalDate> personFirmaKolonne;
+    TableColumn<Kontaktperson, String> personFirmaKolonne;
     @FXML
     TableColumn<Kontaktperson, String> personAnnenInformasjonKolonne;
 
@@ -42,7 +42,7 @@ public class kontaktpersonController implements Initializable {
         personNummerKolonne.setCellValueFactory(new PropertyValueFactory<Kontaktperson,String>("personNummer"));
         personEmailKolonne.setCellValueFactory(new PropertyValueFactory<Kontaktperson,String>("personEmail"));
         personSideKolonne.setCellValueFactory(new PropertyValueFactory<Kontaktperson,String>("personSide"));
-        personFirmaKolonne.setCellValueFactory(new PropertyValueFactory<Kontaktperson, LocalDate>("personFirma"));
+        personFirmaKolonne.setCellValueFactory(new PropertyValueFactory<Kontaktperson, String>("personFirma"));
         personAnnenInformasjonKolonne.setCellValueFactory(new PropertyValueFactory<Kontaktperson,String>("personTekst"));
 
         }
@@ -67,7 +67,12 @@ public class kontaktpersonController implements Initializable {
         setTabellVerdier("personNavn","personNummer","personEmail","personSide","personFirma","personTekst");
         System.out.println(kontaktpersonObservableList);
         tableViewKontaktperson.setEditable(true);
-        personNavnKolonne.setCellFactory(TextFieldTableCell.forTableColumn());
+        personNummerKolonne.setCellFactory(TextFieldTableCell.forTableColumn());
+        personEmailKolonne.setCellFactory(TextFieldTableCell.forTableColumn());
+        personSideKolonne.setCellFactory(TextFieldTableCell.forTableColumn());
+        personFirmaKolonne.setCellFactory(TextFieldTableCell.forTableColumn());
+        personAnnenInformasjonKolonne.setCellFactory(TextFieldTableCell.forTableColumn());
+
 
     }
     /*
