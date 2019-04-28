@@ -57,9 +57,6 @@ public class Kontaktperson {
         return personTekst;
     }
 
-
-
-
     public String toString() {
         return getPersonNavn() + " " +
                 getPersonNummer() + " " +
