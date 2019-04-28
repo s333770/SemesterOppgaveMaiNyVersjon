@@ -64,7 +64,7 @@ public class ArrangementController implements Initializable {
 
     @FXML
     void btnRegistrer(ActionEvent event) throws IOException {
-        arrangementObservableList.add(new Arrangement(txtarrangement.getText(),txttype.getText(),txtartister.getText(), (String) choiceBox.getValue(),txtdato.getValue(),txttidspunkt.getText(),txtbilettpris.getText(),txtbilettsalg.getText(),txtnavn.getText()));
+        arrangementObservableList.add(new Arrangement(txtarrangement.getText(),txttype.getText(),txtartister.getText(), (String) choiceBox.getValue(),txtdato.getValue(),txttidspunkt.getText(),txtbilettpris.getText(),Integer.parseInt(txtbilettsalg.getText()),txtnavn.getText()));
         setTabellVerdier("arrangement", "type","artister","lokale","dato","tidspunkt","bilettpris","bilettsalg","kontaktPerson");
         kontaktpersonObservableList.add(new Kontaktperson(txtnavn.getText(),txtpersonnummer.getText(),txtemail.getText(),txtnettside.getText(),txtfirma.getText(),txtanneninfo.getText()));
 

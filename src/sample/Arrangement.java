@@ -13,7 +13,7 @@ public class Arrangement {
     private LocalDate dato;
     private String tidspunkt;
     private String bilettpris;
-    private String bilettsalg;
+    private int bilettsalg;
     private String kontaktPerson;
 
     public static ObservableList<Arrangement> arrangementObservableList= FXCollections.observableArrayList();
@@ -21,7 +21,7 @@ public class Arrangement {
 
 
 
-    public Arrangement(String arrangement, String type, String artister, String lokale, LocalDate dato, String tidspunkt, String bilettpris, String bilettsalg, String kontaktPerson) {
+    public Arrangement(String arrangement, String type, String artister, String lokale, LocalDate dato, String tidspunkt, String bilettpris, int bilettsalg, String kontaktPerson) {
         this.arrangement = arrangement;
         this.type = type;
         this.artister = artister;
@@ -90,11 +90,11 @@ public class Arrangement {
         this.bilettpris = bilettpris;
     }
 
-    public String getBilettsalg() {
+    public int getBilettsalg() {
         return bilettsalg;
     }
 
-    public void setBilettsalg(String bilettsalg) {
+    public void setBilettsalg(int bilettsalg) {
         this.bilettsalg = bilettsalg;
     }
 
