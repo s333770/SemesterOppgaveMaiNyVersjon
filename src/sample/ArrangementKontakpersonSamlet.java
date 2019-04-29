@@ -185,8 +185,8 @@ public class ArrangementKontakpersonSamlet {
         this.personNavnSamlet.set(personNavnSamlet);
     }
 
-    public SimpleStringProperty getPersonNummerSamlet() {
-        return personNummerSamlet;
+    public String getPersonNummerSamlet() {
+        return personNummerSamlet.get();
     }
 
     public SimpleStringProperty personNummerSamletProperty() {
@@ -197,8 +197,8 @@ public class ArrangementKontakpersonSamlet {
         this.personNummerSamlet.set(personNummerSamlet);
     }
 
-    public SimpleStringProperty getPersonEmailSamlet() {
-        return personEmailSamlet;
+    public String getPersonEmailSamlet() {
+        return personEmailSamlet.get();
     }
 
     public SimpleStringProperty personEmailSamletProperty() {
@@ -209,8 +209,8 @@ public class ArrangementKontakpersonSamlet {
         this.personEmailSamlet.set(personEmailSamlet);
     }
 
-    public SimpleStringProperty getPersonSideSamlet() {
-        return personSideSamlet;
+    public String getPersonSideSamlet() {
+        return personSideSamlet.get();
     }
 
     public SimpleStringProperty personSideSamletProperty() {
@@ -221,8 +221,8 @@ public class ArrangementKontakpersonSamlet {
         this.personSideSamlet.set(personSideSamlet);
     }
 
-    public SimpleStringProperty getPersonFirmaSamlet() {
-        return personFirmaSamlet;
+    public String getPersonFirmaSamlet() {
+        return personFirmaSamlet.get();
     }
 
     public SimpleStringProperty personFirmaSamletProperty() {
@@ -233,8 +233,8 @@ public class ArrangementKontakpersonSamlet {
         this.personFirmaSamlet.set(personFirmaSamlet);
     }
 
-    public SimpleStringProperty getPersonTekstSamlet() {
-        return personTekstSamlet;
+    public String getPersonTekstSamlet() {
+        return personTekstSamlet.get();
     }
 
     public SimpleStringProperty personTekstSamletProperty() {

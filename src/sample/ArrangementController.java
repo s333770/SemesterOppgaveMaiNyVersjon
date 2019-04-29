@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -27,25 +28,25 @@ public class ArrangementController implements Initializable {
 
 
     @FXML
-    private TableView<Arrangement> tableView;
+    private TableView<ArrangementKontakpersonSamlet> tableView;
     @FXML
-    TableColumn<Arrangement, String> arrangementKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> arrangementKolonne;
     @FXML
-    TableColumn<Arrangement, String> typeKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> typeKolonne;
     @FXML
-    TableColumn<Arrangement, String> artisterKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> artisterKolonne;
     @FXML
-    TableColumn<Arrangement, String> lokaleKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> lokaleKolonne;
     @FXML
-    TableColumn<Arrangement, LocalDate> datoKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, LocalDate> datoKolonne;
     @FXML
-    TableColumn<Arrangement, String> tidspunktKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> tidspunktKolonne;
     @FXML
-    TableColumn<Arrangement, String> bilettprisKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> bilettprisKolonne;
     @FXML
-    TableColumn<Arrangement, String> bilettsalgKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> bilettsalgKolonne;
     @FXML
-    TableColumn<Arrangement, String> kontaktPersonKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> kontaktPersonKolonne;
 
     @FXML private TextField txtarrangement;
     @FXML private TextField txttype;
@@ -97,19 +98,13 @@ public class ArrangementController implements Initializable {
         window.show();
     }
     @FXML void oversiktKontaktPerson(ActionEvent event) throws IOException{
-        FXMLLoader loader= new FXMLLoader();
-        loader.setLocation(getClass().getResource("/sample/kontaktperson.fxml"));
-        Parent tableViewParent= loader.load();
-        Scene tableViewScene=new Scene(tableViewParent);
-        Stage window= (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(tableViewScene);
-        window.show();
-
-
-
-        Arrangement valgtArrangement=tableView.getSelectionModel().getSelectedItem();
-       
-
+        ArrangementKontakpersonSamlet valgtArrangement=tableView.getSelectionModel().getSelectedItem(); // Tar det elementet du trykker på
+        navnLabelKontaktPerson.setText(valgtArrangement.getPersonNavnSamlet());
+        personnummerLabelKontaktPerson.setText(valgtArrangement.getPersonNummerSamlet());
+        emailLabelKontaktPerson.setText(valgtArrangement.getPersonEmailSamlet());
+        SideLabelKontaktPerson.setText(valgtArrangement.getPersonSideSamlet());
+        FirmaLabelKontaktPerson.setText(valgtArrangement.getPersonFirmaSamlet());
+        AnnenInformasjonLabelKontaktPerson.setText(valgtArrangement.getPersonTekstSamlet());
     }
 
     @Override
@@ -121,26 +116,35 @@ public class ArrangementController implements Initializable {
         }
        // arrangementObservableList.add(new Arrangement("Konsert","Konsert","Lady Gaga","Kirke",LocalDate.of(1986, Month.JULY,21),"19:00","199","100","Leif"));
 
-        tableView.setItems(arrangementObservableList);
+        tableView.setItems(arrangementKontaktpersonSamletObservableList);
         choiceBox.getItems().addAll("Oranges","pears","Strawberries");
 
     }
     public void setTabellVerdier(String arrangement, String type,String artister, String lokale, String dato, String tidspunkt,String bilettPris,String bilettsalg, String kontaktPerson){
-        arrangementKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("arrangement"));
+        arrangementKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("arrangementSamlet"));
         // leggTilDataObservableList(txtarrangement.getText(),txttype.getText(),txtartister.getText(), (String) choiceBox.getValue(),txtdato.getValue(),txttidspunkt.getText(),txtbilettpris.getText(),txtbilettsalg.getText(),txtkontaktPerson.getText());
-        typeKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("type"));
-        artisterKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("artister"));
-        lokaleKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("lokale"));
-        datoKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement, LocalDate>("dato"));
-        tidspunktKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("tidspunkt"));
-        bilettprisKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("bilettpris"));
-        bilettsalgKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("bilettsalg"));
-        kontaktPersonKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("kontaktPerson"));
+        typeKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("typeSamlet"));
+        artisterKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("artisterSamlet"));
+        lokaleKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("lokaleSamlet"));
+        datoKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet, LocalDate>("datoSamlet"));
+        tidspunktKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("tidspunktSamlet"));
+        bilettprisKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("bilettprisSamlet"));
+        bilettsalgKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("bilettsalgSamlet"));
+        kontaktPersonKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("kontaktPersonSamlet"));
     }
 
     public void endreArrangementNavn(TableColumn.CellEditEvent edittedCell){
-        Arrangement valgtArrangement=tableView.getSelectionModel().getSelectedItem(); // Tar det elementet du trykker på
-        valgtArrangement.setArrangement(edittedCell.getNewValue().toString());
+        ArrangementKontakpersonSamlet valgtArrangement=tableView.getSelectionModel().getSelectedItem(); // Tar det elementet du trykker på
+        valgtArrangement.setArrangementSamlet(edittedCell.getNewValue().toString());
+    }
+
+    public static void skrivUtBilett(ActionEvent event) throws IOException{
+    //Kode for å skrive ut bilettt
+    }
+
+    public static void lesInnBilett(ActionEvent event) throws IOException
+    {
+        //Kode for å lese inn bilett
     }
 
 }
