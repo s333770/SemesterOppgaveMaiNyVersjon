@@ -64,6 +64,21 @@ public class ArrangementController implements Initializable {
     @FXML private TextField txtanneninfo;
 
     @FXML
+    Label navnLabelKontaktPerson;
+    @FXML
+    Label personnummerLabelKontaktPerson;
+    @FXML
+    Label telefonnummerLabelKontaktPerson;
+    @FXML
+    Label emailLabelKontaktPerson;
+    @FXML
+    Label SideLabelKontaktPerson;
+    @FXML
+    Label FirmaLabelKontaktPerson;
+    @FXML
+    Label AnnenInformasjonLabelKontaktPerson;
+
+    @FXML
     void btnRegistrer(ActionEvent event) throws IOException {
         arrangementObservableList.add(new Arrangement(txtarrangement.getText(),txttype.getText(),txtartister.getText(), (String) choiceBox.getValue(),txtdato.getValue(),txttidspunkt.getText(),txtbilettpris.getText(),Integer.parseInt(txtbilettsalg.getText()),txtkontaktPerson.getText()));
         setTabellVerdier("arrangement", "type","artister","lokale","dato","tidspunkt","bilettpris","bilettsalg","kontaktPerson");
@@ -93,7 +108,7 @@ public class ArrangementController implements Initializable {
 
 
         Arrangement valgtArrangement=tableView.getSelectionModel().getSelectedItem();
-
+       
 
     }
 

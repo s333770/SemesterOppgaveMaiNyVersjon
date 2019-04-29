@@ -3,6 +3,8 @@ package sample;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 
 public class Kontaktperson {
 
@@ -12,6 +14,8 @@ public class Kontaktperson {
     private SimpleStringProperty personSide;
     private SimpleStringProperty personFirma;
     private SimpleStringProperty personTekst;
+
+
 
     public static ObservableList<Kontaktperson> kontaktpersonObservableList= FXCollections.observableArrayList();
 

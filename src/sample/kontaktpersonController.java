@@ -25,26 +25,26 @@ public class kontaktpersonController implements Initializable {
     @FXML
     private TableView<ArrangementKontakpersonSamlet> tableViewKontaktperson;
     @FXML
-    TableColumn<Kontaktperson, String> personNavnKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> personNavnKolonne;
     @FXML
-    TableColumn<Kontaktperson, String> personNummerKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> personNummerKolonne;
     @FXML
-    TableColumn<Kontaktperson, String> personEmailKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> personEmailKolonne;
     @FXML
-    TableColumn<Kontaktperson, String> personSideKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> personSideKolonne;
     @FXML
-    TableColumn<Kontaktperson, String> personFirmaKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> personFirmaKolonne;
     @FXML
-    TableColumn<Kontaktperson, String> personAnnenInformasjonKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> personAnnenInformasjonKolonne;
 
     public void setTabellVerdier(String personNavn, String personNummer,String personEmail, String personSide, String personFirma, String personTekst){
-        personNavnKolonne.setCellValueFactory(new PropertyValueFactory<Kontaktperson,String>("personNavn"));
+        personNavnKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("personNavnSamlet"));
         // leggTilDataObservableList(txtarrangement.getText(),txttype.getText(),txtartister.getText(), (String) choiceBox.getValue(),txtdato.getValue(),txttidspunkt.getText(),txtbilettpris.getText(),txtbilettsalg.getText(),txtkontaktPerson.getText());
-        personNummerKolonne.setCellValueFactory(new PropertyValueFactory<Kontaktperson,String>("personNummer"));
-        personEmailKolonne.setCellValueFactory(new PropertyValueFactory<Kontaktperson,String>("personEmail"));
-        personSideKolonne.setCellValueFactory(new PropertyValueFactory<Kontaktperson,String>("personSide"));
-        personFirmaKolonne.setCellValueFactory(new PropertyValueFactory<Kontaktperson, String>("personFirma"));
-        personAnnenInformasjonKolonne.setCellValueFactory(new PropertyValueFactory<Kontaktperson,String>("personTekst"));
+        personNummerKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("personNummerSamlet"));
+        personEmailKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("personEmailSamlet"));
+        personSideKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("personSideSamlet"));
+        personFirmaKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet, String>("personFirmaSamlet"));
+        personAnnenInformasjonKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("personTekstSamlet"));
 
         }
 
@@ -73,6 +73,8 @@ public class kontaktpersonController implements Initializable {
         personSideKolonne.setCellFactory(TextFieldTableCell.forTableColumn());
         personFirmaKolonne.setCellFactory(TextFieldTableCell.forTableColumn());
         personAnnenInformasjonKolonne.setCellFactory(TextFieldTableCell.forTableColumn());
+
+
 
 
     }
