@@ -22,6 +22,8 @@ import java.time.Month;
 import java.util.ResourceBundle;
 
 import static sample.Arrangement.arrangementObservableList;
+import static sample.ArrangementKontakpersonSamlet.arrangementKontaktpersonSamletObservableList;
+
 
 public class Controller implements Initializable{
     private Arrangement valgtArrangement;
@@ -71,8 +73,7 @@ public class Controller implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         arrangementObservableList.add(new Arrangement("Disko","Kinosal","Lady Gaga", "Kjeller",LocalDate.of(1915, Month.DECEMBER,12),"19:00","100",100,"Fredrik"));
-        arrangementObservableList.add(new Arrangement("Disko","Kinosal","Lady Gaga", "Kjeller",LocalDate.of(1915, Month.DECEMBER,12),"19:00","100",100,"Fredrik"));
-        arrangementObservableList.add(new Arrangement("Disko","Kinosal","Lady Gaga", "Kjeller",LocalDate.of(1915, Month.DECEMBER,12),"19:00","100",100,"Fredrik"));
+        arrangementKontaktpersonSamletObservableList.add(new ArrangementKontakpersonSamlet("Konsert","kino","Hellbillies","Menighetshuset",LocalDate.of(1915, Month.DECEMBER,12),"19:00","199",100,"Fredrik","Fredrik Ulvestad","090891","tm2_93@hotmail.com","www.Fredrik.com","Inget firma","nei"));
         setTabellVerdier("arrangement", "type","artister","lokale","dato","tidspunkt","bilettpris","bilettsalg","kontaktPerson");
         tableView.setItems(arrangementObservableList);
 

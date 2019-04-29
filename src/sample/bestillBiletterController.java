@@ -1,12 +1,14 @@
 package sample;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
@@ -48,16 +50,22 @@ public class bestillBiletterController implements Initializable {
 
     @FXML private TextField telefonBiletterTextfield;
 
-
-
-
-
+    @FXML Label arrangementLabel;
+    @FXML Label stedLabel;
+    @FXML Label tidspunktLabel;
+    @FXML Label datoLabel;
+    @FXML Label navnLabel;
+    @FXML Label telefonnummerLabel;
+    @FXML Label emailLabel;
+    @FXML Label antallBiletterLabel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         antallBiletterChoiceBox.getItems().addAll(1,2,3,4,5,6,7,8,9,10,11,12);
         setTabellVerdier("arrangement", "type","artister","lokale","dato","tidspunkt","bilettpris","bilettsalg","kontaktPerson");
         tableView.setItems(arrangementObservableList);
+
+
 
     }
 
@@ -69,7 +77,30 @@ public class bestillBiletterController implements Initializable {
         int sum=antallBiletter-antallBiletterBestiler;
         valgtArrangement.setBilettsalg(sum);
         tableView.refresh();
+
+        arrangementLabel.setText(valgtArrangement.getArrangement());
+        antallBiletterLabel.setText(antallBiletterChoiceBox.getValue().toString());
+        stedLabel.setText(valgtArrangement.getType());
+        tidspunktLabel.setText(valgtArrangement.getTidspunkt());
+        datoLabel.setText(valgtArrangement.getDato().toString());
+        navnLabel.setText(navnBilettTextfield.getText());
+        telefonnummerLabel.setText(telefonBiletterTextfield.getText());
+        emailLabel.setText(emailBilettTextfield.getText());
     }
+    public void LagreDataTilFil(javafx.event.ActionEvent actionEvent){
+
+    }
+    public void tilbakeTilStartside(javafx.event.ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader= new FXMLLoader();
+        loader.setLocation(getClass().getResource("/sample/sample.fxml"));
+        Parent tableViewParent= loader.load();
+        Scene tableViewScene=new Scene(tableViewParent);
+        Stage window= (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        window.setScene(tableViewScene);
+        window.show();
+
+    }
+
     public void setTabellVerdier(String arrangement, String type,String artister, String lokale, String dato, String tidspunkt,String bilettPris,String bilettsalg, String kontaktPerson){
         arrangementKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("arrangement"));
         // leggTilDataObservableList(txtarrangement.getText(),txttype.getText(),txtartister.getText(), (String) choiceBox.getValue(),txtdato.getValue(),txttidspunkt.getText(),txtbilettpris.getText(),txtbilettsalg.getText(),txtkontaktPerson.getText());

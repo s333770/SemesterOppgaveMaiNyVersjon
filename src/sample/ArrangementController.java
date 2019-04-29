@@ -18,6 +18,8 @@ import java.time.Month;
 import java.util.ResourceBundle;
 
 import static sample.Arrangement.arrangementObservableList;
+
+import static sample.ArrangementKontakpersonSamlet.arrangementKontaktpersonSamletObservableList;
 import static sample.Kontaktperson.kontaktpersonObservableList;
 
 
@@ -55,7 +57,6 @@ public class ArrangementController implements Initializable {
     @FXML private TextField txtbilettsalg;
     @FXML private TextField txtkontaktPerson;
 
-    @FXML private TextField txtnavn;
     @FXML private TextField txtpersonnummer;
     @FXML private TextField txtemail;
     @FXML private TextField txtnettside;
@@ -64,9 +65,10 @@ public class ArrangementController implements Initializable {
 
     @FXML
     void btnRegistrer(ActionEvent event) throws IOException {
-        arrangementObservableList.add(new Arrangement(txtarrangement.getText(),txttype.getText(),txtartister.getText(), (String) choiceBox.getValue(),txtdato.getValue(),txttidspunkt.getText(),txtbilettpris.getText(),Integer.parseInt(txtbilettsalg.getText()),txtnavn.getText()));
+        arrangementObservableList.add(new Arrangement(txtarrangement.getText(),txttype.getText(),txtartister.getText(), (String) choiceBox.getValue(),txtdato.getValue(),txttidspunkt.getText(),txtbilettpris.getText(),Integer.parseInt(txtbilettsalg.getText()),txtkontaktPerson.getText()));
         setTabellVerdier("arrangement", "type","artister","lokale","dato","tidspunkt","bilettpris","bilettsalg","kontaktPerson");
-        kontaktpersonObservableList.add(new Kontaktperson(txtnavn.getText(),txtpersonnummer.getText(),txtemail.getText(),txtnettside.getText(),txtfirma.getText(),txtanneninfo.getText()));
+        kontaktpersonObservableList.add(new Kontaktperson(txtkontaktPerson.getText(),txtpersonnummer.getText(),txtemail.getText(),txtnettside.getText(),txtfirma.getText(),txtanneninfo.getText()));
+        arrangementKontaktpersonSamletObservableList.add(new ArrangementKontakpersonSamlet(txtarrangement.getText(),txttype.getText(),txtartister.getText(), (String) choiceBox.getValue(),txtdato.getValue(),txttidspunkt.getText(),txtbilettpris.getText(),Integer.parseInt(txtbilettsalg.getText()),txtkontaktPerson.getText(),txtkontaktPerson.getText(),txtpersonnummer.getText(),txtemail.getText(),txtnettside.getText(),txtfirma.getText(),txtanneninfo.getText()));
 
     }
     @FXML
@@ -87,6 +89,12 @@ public class ArrangementController implements Initializable {
         Stage window= (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(tableViewScene);
         window.show();
+
+
+
+        Arrangement valgtArrangement=tableView.getSelectionModel().getSelectedItem();
+
+
     }
 
     @Override

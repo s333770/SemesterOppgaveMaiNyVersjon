@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="612.0" prefWidth="804.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.kontaktpersonController">
    <children>
-      <TableView fx:id="tableViewKontaktperson" layoutX="42.0" layoutY="78.0" prefHeight="391.0" prefWidth="732.0">
+      <TableView fx:id="tableViewKontaktperson" layoutX="37.0" layoutY="255.0" prefHeight="250.0" prefWidth="732.0">
         <columns>
           <TableColumn fx:id="personNavnKolonne" prefWidth="75.0" text="Navn" />
           <TableColumn fx:id="personNummerKolonne" prefWidth="131.5" text="Personnummer" />
@@ -24,6 +24,16 @@
             <Font name="System Bold Italic" size="22.0" />
          </font>
       </Label>
-      <Button layoutX="396.0" layoutY="504.0" mnemonicParsing="false" onAction="#byttSceneTilbakeTilStart" text="Gå tilbake" />
+      <Button layoutX="368.0" layoutY="528.0" mnemonicParsing="false" onAction="#byttSceneTilbakeTilStart" text="Gå tilbake" />
+      <Label layoutX="254.0" layoutY="103.0" text="Ansvarlig for følgende arrangement: ">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="arrangementAnsvarligLbl" alignment="CENTER" layoutX="236.0" layoutY="163.0" prefHeight="32.0" prefWidth="361.0">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

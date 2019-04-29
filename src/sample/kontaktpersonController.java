@@ -17,12 +17,13 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import static sample.ArrangementKontakpersonSamlet.arrangementKontaktpersonSamletObservableList;
 import static sample.Kontaktperson.kontaktpersonObservableList;
 
 public class kontaktpersonController implements Initializable {
 
     @FXML
-    private TableView<Kontaktperson> tableViewKontaktperson;
+    private TableView<ArrangementKontakpersonSamlet> tableViewKontaktperson;
     @FXML
     TableColumn<Kontaktperson, String> personNavnKolonne;
     @FXML
@@ -63,9 +64,9 @@ public class kontaktpersonController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tableViewKontaktperson.setItems(kontaktpersonObservableList);
+        tableViewKontaktperson.setItems(arrangementKontaktpersonSamletObservableList);
         setTabellVerdier("personNavn","personNummer","personEmail","personSide","personFirma","personTekst");
-        System.out.println(kontaktpersonObservableList);
+        System.out.println(arrangementKontaktpersonSamletObservableList);
         tableViewKontaktperson.setEditable(true);
         personNummerKolonne.setCellFactory(TextFieldTableCell.forTableColumn());
         personEmailKolonne.setCellFactory(TextFieldTableCell.forTableColumn());

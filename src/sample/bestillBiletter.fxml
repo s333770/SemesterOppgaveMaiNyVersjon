@@ -53,11 +53,12 @@
             <TableColumn fx:id="kontaktPersonKolonne" prefWidth="166.0" text="Kontaktperson" />
          </columns>
       </TableView>
-      <Button layoutX="381.0" layoutY="598.0" mnemonicParsing="false" text="Lagre data til Fil" />
-      <Button layoutX="538.0" layoutY="598.0" mnemonicParsing="false" text="Tilbake til startside" />
+      <Button layoutX="381.0" layoutY="598.0" mnemonicParsing="false" onAction="#LagreDataTilFil" text="Lagre data til Fil" />
+      <Button layoutX="538.0" layoutY="598.0" mnemonicParsing="false" onAction="#tilbakeTilStartside" text="Tilbake til startside" />
       <GridPane layoutX="99.0" layoutY="473.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -71,19 +72,21 @@
         </rowConstraints>
          <children>
             <Label text="Arrangement" />
-            <Label text="Sted" GridPane.columnIndex="1" />
-            <Label text="Dato" GridPane.columnIndex="2" />
-            <Label text="Tidspunkt" GridPane.columnIndex="3" />
-            <Label text="Navn" GridPane.columnIndex="4" />
-            <Label text="Telefonnummer" GridPane.columnIndex="5" />
-            <Label text="Email" GridPane.columnIndex="6" />
-            <Label prefHeight="17.0" prefWidth="84.0" GridPane.rowIndex="1" />
-            <Label prefHeight="17.0" prefWidth="77.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label prefHeight="17.0" prefWidth="83.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Label prefHeight="17.0" prefWidth="83.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Label prefHeight="17.0" prefWidth="88.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <Label prefHeight="17.0" prefWidth="85.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <Label prefHeight="17.0" prefWidth="82.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+            <Label text="Sted" GridPane.columnIndex="2" />
+            <Label text="Dato" GridPane.columnIndex="3" />
+            <Label text="Tidspunkt" GridPane.columnIndex="4" />
+            <Label text="Navn" GridPane.columnIndex="5" />
+            <Label text="Telefonnummer" GridPane.columnIndex="6" />
+            <Label text="Email" GridPane.columnIndex="7" />
+            <Label fx:id="arrangementLabel" prefHeight="17.0" prefWidth="84.0" GridPane.rowIndex="1" />
+            <Label fx:id="stedLabel" prefHeight="17.0" prefWidth="77.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label fx:id="datoLabel" prefHeight="17.0" prefWidth="83.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Label fx:id="tidspunktLabel" prefHeight="17.0" prefWidth="83.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Label fx:id="navnLabel" prefHeight="17.0" prefWidth="88.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <Label fx:id="telefonnummerLabel" prefHeight="17.0" prefWidth="85.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+            <Label fx:id="emailLabel" prefHeight="17.0" prefWidth="82.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+            <Label text="Antall biletter" GridPane.columnIndex="1" />
+            <Label fx:id="antallBiletterLabel" prefHeight="17.0" prefWidth="91.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <Label layoutX="348.0" layoutY="447.0" text="Informasjon vi har lagret om deg">
