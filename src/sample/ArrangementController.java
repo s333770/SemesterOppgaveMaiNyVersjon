@@ -138,13 +138,13 @@ public class ArrangementController implements Initializable {
         valgtArrangement.setArrangementSamlet(edittedCell.getNewValue().toString());
     }
 
-    public static void skrivUtBilett(ActionEvent event) throws IOException{
-    //Kode for å skrive ut bilettt
+  
+
+    public void lesInnBilett(ActionEvent actionEvent) {
     }
 
-    public static void lesInnBilett(ActionEvent event) throws IOException
-    {
-        //Kode for å lese inn bilett
+    public void skrivUtBilett(ActionEvent actionEvent) {
     }
+
 
 }

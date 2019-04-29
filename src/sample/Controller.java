@@ -40,25 +40,25 @@ public class Controller implements Initializable{
     @FXML private Button oversiktside;
 
     @FXML
-    private TableView<Arrangement> tableView;
+    private TableView<ArrangementKontakpersonSamlet> tableView;
     @FXML
-    TableColumn<Arrangement, String> arrangementKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> arrangementKolonne;
     @FXML
-    TableColumn<Arrangement, String> typeKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> typeKolonne;
     @FXML
-    TableColumn<Arrangement, String> artisterKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> artisterKolonne;
     @FXML
-    TableColumn<Arrangement, String> lokaleKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> lokaleKolonne;
     @FXML
-    TableColumn<Arrangement, LocalDate> datoKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, LocalDate> datoKolonne;
     @FXML
-    TableColumn<Arrangement, String> tidspunktKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> tidspunktKolonne;
     @FXML
-    TableColumn<Arrangement, String> bilettprisKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> bilettprisKolonne;
     @FXML
-    TableColumn<Arrangement, String> bilettsalgKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> bilettsalgKolonne;
     @FXML
-    TableColumn<Arrangement, String> kontaktPersonKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> kontaktPersonKolonne;
 
 
     public void leggTilArrangement(javafx.event.ActionEvent actionEvent) throws IOException {
@@ -68,14 +68,12 @@ public class Controller implements Initializable{
         lastInnStage(actionEvent,"/sample/bestillBiletter.fxml");
 
     }
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         arrangementObservableList.add(new Arrangement("Disko","Kinosal","Lady Gaga", "Kjeller",LocalDate.of(1915, Month.DECEMBER,12),"19:00","100",100,"Fredrik"));
         arrangementKontaktpersonSamletObservableList.add(new ArrangementKontakpersonSamlet("Konsert","kino","Hellbillies","Menighetshuset",LocalDate.of(1915, Month.DECEMBER,12),"19:00","199",100,"Fredrik","Fredrik Ulvestad","090891","tm2_93@hotmail.com","www.Fredrik.com","Inget firma","nei"));
         setTabellVerdier("arrangement", "type","artister","lokale","dato","tidspunkt","bilettpris","bilettsalg","kontaktPerson");
-        tableView.setItems(arrangementObservableList);
+        tableView.setItems(arrangementKontaktpersonSamletObservableList);
 
     }
 
@@ -89,15 +87,15 @@ public class Controller implements Initializable{
         window.show();
     }
     public void setTabellVerdier(String arrangement, String type,String artister, String lokale, String dato, String tidspunkt,String bilettPris,String bilettsalg, String kontaktPerson){
-        arrangementKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("arrangement"));
+        arrangementKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("arrangementSamlet"));
         // leggTilDataObservableList(txtarrangement.getText(),txttype.getText(),txtartister.getText(), (String) choiceBox.getValue(),txtdato.getValue(),txttidspunkt.getText(),txtbilettpris.getText(),txtbilettsalg.getText(),txtkontaktPerson.getText());
-        typeKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("type"));
-        artisterKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("artister"));
-        lokaleKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("lokale"));
-        datoKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement, LocalDate>("dato"));
-        tidspunktKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("tidspunkt"));
-        bilettprisKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("bilettpris"));
-        bilettsalgKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("bilettsalg"));
-        kontaktPersonKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("kontaktPerson"));
+        typeKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("typeSamlet"));
+        artisterKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("artisterSamlet"));
+        lokaleKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("lokaleSamlet"));
+        datoKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet, LocalDate>("datoSamlet"));
+        tidspunktKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("tidspunktSamlet"));
+        bilettprisKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("bilettprisSamlet"));
+        bilettsalgKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("bilettsalgSamlet"));
+        kontaktPersonKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("kontaktPersonSamlet"));
     }
 }
