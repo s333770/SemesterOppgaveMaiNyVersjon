@@ -1,5 +1,6 @@
 package sample;
 
+import com.sun.javaws.exceptions.InvalidArgumentException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -80,11 +81,31 @@ public class ArrangementController implements Initializable {
     Label AnnenInformasjonLabelKontaktPerson;
 
     @FXML
-    void btnRegistrer(ActionEvent event) throws IOException {
-        arrangementObservableList.add(new Arrangement(txtarrangement.getText(),txttype.getText(),txtartister.getText(), (String) choiceBox.getValue(),txtdato.getValue(),txttidspunkt.getText(),txtbilettpris.getText(),Integer.parseInt(txtbilettsalg.getText()),txtkontaktPerson.getText()));
-        setTabellVerdier("arrangement", "type","artister","lokale","dato","tidspunkt","bilettpris","bilettsalg","kontaktPerson");
-        kontaktpersonObservableList.add(new Kontaktperson(txtkontaktPerson.getText(),txtpersonnummer.getText(),txtemail.getText(),txtnettside.getText(),txtfirma.getText(),txtanneninfo.getText()));
-        arrangementKontaktpersonSamletObservableList.add(new ArrangementKontakpersonSamlet(txtarrangement.getText(),txttype.getText(),txtartister.getText(), (String) choiceBox.getValue(),txtdato.getValue(),txttidspunkt.getText(),txtbilettpris.getText(),Integer.parseInt(txtbilettsalg.getText()),txtkontaktPerson.getText(),txtkontaktPerson.getText(),txtpersonnummer.getText(),txtemail.getText(),txtnettside.getText(),txtfirma.getText(),txtanneninfo.getText()));
+    void btnRegistrer(ActionEvent event) throws InputException {
+            try{
+               // if(txtarrangement.getText()==null ||txtarrangement.getText().trim().isEmpty() ||txttype.getText()==null ||txttype.getText().trim().isEmpty()||txtartister.getText()==null ||txtartister.getText().trim().isEmpty()||
+                //        txttidspunkt.getText()==null ||txttidspunkt.getText().trim().isEmpty()||txtbilettpris.getText()==null ||txtbilettpris.getText().trim().isEmpty()||txtbilettsalg.getText()==null ||txtbilettsalg.getText().trim().isEmpty()||txtkontaktPerson.getText()==null ||txtkontaktPerson.getText().trim().isEmpty()){
+                //            throw new InputException("Alle feltene er ikke fylt ut i arrangement");
+              //  }
+                if(txtkontaktPerson.getText()==null ||txtkontaktPerson.getText().trim().isEmpty() ){
+                        /*||txtpersonnummer.getText()==null ||txtpersonnummer.getText().trim().isEmpty()||txtemail.getText()==null ||txtemail.getText().trim().isEmpty()||
+                        txtnettside.getText()==null ||txtnettside.getText().trim().isEmpty()||txtfirma.getText()==null ||txtfirma.getText().trim().isEmpty()||txtanneninfo.getText()==null ||txtanneninfo.getText().trim().isEmpty()){
+                   */ throw new InputException("Alle felene er ikke fylt ut i kontaktperson");
+                }
+
+
+                arrangementObservableList.add(new Arrangement(txtarrangement.getText(),txttype.getText(),txtartister.getText(), (String) choiceBox.getValue(),txtdato.getValue(),txttidspunkt.getText(),txtbilettpris.getText(),Integer.parseInt(txtbilettsalg.getText()),txtkontaktPerson.getText()));
+                setTabellVerdier("arrangement", "type","artister","lokale","dato","tidspunkt","bilettpris","bilettsalg","kontaktPerson");
+                kontaktpersonObservableList.add(new Kontaktperson(txtkontaktPerson.getText(),txtpersonnummer.getText(),txtemail.getText(),txtnettside.getText(),txtfirma.getText(),txtanneninfo.getText()));
+                arrangementKontaktpersonSamletObservableList.add(new ArrangementKontakpersonSamlet(txtarrangement.getText(),txttype.getText(),txtartister.getText(), (String) choiceBox.getValue(),txtdato.getValue(),txttidspunkt.getText(),txtbilettpris.getText(),Integer.parseInt(txtbilettsalg.getText()),txtkontaktPerson.getText(),txtkontaktPerson.getText(),txtpersonnummer.getText(),txtemail.getText(),txtnettside.getText(),txtfirma.getText(),txtanneninfo.getText()));
+            }
+            catch(InputException e){
+                System.err.println(e.getMessage());
+            }
+
+          //  if(txtarrangement.getText(),txttype.getText(),txtartister.getText(), (String) choiceBox.getValue(),txtdato.getValue(),txttidspunkt.getText(),txtbilettpris.getText(),Integer.parseInt(txtbilettsalg.getText()),txtkontaktPerson.getText()))
+
+
 
     }
     @FXML
@@ -145,6 +166,11 @@ public class ArrangementController implements Initializable {
 
     public void skrivUtBilett(ActionEvent actionEvent) {
     }
+
+    public void getTextFieldVerdi(String sometingsometing){
+
+    }
+
 
 
 }

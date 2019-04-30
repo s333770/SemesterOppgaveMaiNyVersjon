@@ -28,7 +28,7 @@
                   <Label text="Dato" />
                   <Label text="Tidspunkt" />
                   <Label text="Bilettpris" />
-                  <Label text="Bilettsalg" />
+                  <Label text="Antall ledige bilettter" />
                   <Label text="Kontaktperson" />
                </children>
             </VBox>

@@ -66,7 +66,6 @@ public class Controller implements Initializable{
     }
     public void bestillBiletter(javafx.event.ActionEvent actionEvent) throws IOException {
         lastInnStage(actionEvent,"/sample/bestillBiletter.fxml");
-
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -74,7 +73,6 @@ public class Controller implements Initializable{
         arrangementKontaktpersonSamletObservableList.add(new ArrangementKontakpersonSamlet("Konsert","kino","Hellbillies","Menighetshuset",LocalDate.of(1915, Month.DECEMBER,12),"19:00","199",100,"Fredrik","Fredrik Ulvestad","090891","tm2_93@hotmail.com","www.Fredrik.com","Inget firma","nei"));
         setTabellVerdier("arrangement", "type","artister","lokale","dato","tidspunkt","bilettpris","bilettsalg","kontaktPerson");
         tableView.setItems(arrangementKontaktpersonSamletObservableList);
-
     }
 
     public void lastInnStage(javafx.event.ActionEvent actionEvent,String fxmlFil)throws IOException{

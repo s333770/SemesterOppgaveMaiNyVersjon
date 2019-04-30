@@ -16,6 +16,8 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import static sample.Arrangement.arrangementObservableList;
+import static sample.ArrangementKontakpersonSamlet.arrangementKontaktpersonSamletObservableList;
+
 
 
 public class bestillBiletterController implements Initializable {
@@ -24,25 +26,25 @@ public class bestillBiletterController implements Initializable {
     @FXML private ChoiceBox antallBiletterChoiceBox;
 
     @FXML
-    private TableView<Arrangement> tableView;
+    private TableView<ArrangementKontakpersonSamlet> tableView;
     @FXML
-    TableColumn<Arrangement, String> arrangementKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> arrangementKolonne;
     @FXML
-    TableColumn<Arrangement, String> typeKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> typeKolonne;
     @FXML
-    TableColumn<Arrangement, String> artisterKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> artisterKolonne;
     @FXML
-    TableColumn<Arrangement, String> lokaleKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> lokaleKolonne;
     @FXML
-    TableColumn<Arrangement, LocalDate> datoKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, LocalDate> datoKolonne;
     @FXML
-    TableColumn<Arrangement, String> tidspunktKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> tidspunktKolonne;
     @FXML
-    TableColumn<Arrangement, String> bilettprisKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> bilettprisKolonne;
     @FXML
-    TableColumn<Arrangement, String> bilettsalgKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> bilettsalgKolonne;
     @FXML
-    TableColumn<Arrangement, String> kontaktPersonKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, String> kontaktPersonKolonne;
 
     @FXML private TextField navnBilettTextfield;
 
@@ -63,26 +65,27 @@ public class bestillBiletterController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         antallBiletterChoiceBox.getItems().addAll(1,2,3,4,5,6,7,8,9,10,11,12);
         setTabellVerdier("arrangement", "type","artister","lokale","dato","tidspunkt","bilettpris","bilettsalg","kontaktPerson");
-        tableView.setItems(arrangementObservableList);
+        tableView.setItems(arrangementKontaktpersonSamletObservableList);
 
 
 
     }
 
     public void bestillBiletterPushed(javafx.event.ActionEvent actionEvent) {
-        Arrangement valgtArrangement=tableView.getSelectionModel().getSelectedItem();
-        int antallBiletter= valgtArrangement.getBilettsalg();
+        ArrangementKontakpersonSamlet valgtArrangement=tableView.getSelectionModel().getSelectedItem();
+       int antallBiletter= valgtArrangement.getBilettsalgSamlet().intValue();
         int antallBiletterBestiler=Integer.parseInt(antallBiletterChoiceBox.getValue().toString());
 
-        int sum=antallBiletter-antallBiletterBestiler;
-        valgtArrangement.setBilettsalg(sum);
+        int sum=(Integer)antallBiletter-(Integer)antallBiletterBestiler;
+        System.out.println(sum);
+        valgtArrangement.setBilettsalgSamlet(sum);
         tableView.refresh();
 
-        arrangementLabel.setText(valgtArrangement.getArrangement());
+        arrangementLabel.setText(valgtArrangement.getArrangementSamlet().toString());
         antallBiletterLabel.setText(antallBiletterChoiceBox.getValue().toString());
-        stedLabel.setText(valgtArrangement.getType());
-        tidspunktLabel.setText(valgtArrangement.getTidspunkt());
-        datoLabel.setText(valgtArrangement.getDato().toString());
+        stedLabel.setText(valgtArrangement.getTypeSamlet().toString());
+        tidspunktLabel.setText(valgtArrangement.getTidspunktSamlet().toString());
+        datoLabel.setText(valgtArrangement.getDatoSamlet().toString());
         navnLabel.setText(navnBilettTextfield.getText());
         telefonnummerLabel.setText(telefonBiletterTextfield.getText());
         emailLabel.setText(emailBilettTextfield.getText());
@@ -102,16 +105,16 @@ public class bestillBiletterController implements Initializable {
     }
 
     public void setTabellVerdier(String arrangement, String type,String artister, String lokale, String dato, String tidspunkt,String bilettPris,String bilettsalg, String kontaktPerson){
-        arrangementKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("arrangement"));
+        arrangementKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("arrangementSamlet"));
         // leggTilDataObservableList(txtarrangement.getText(),txttype.getText(),txtartister.getText(), (String) choiceBox.getValue(),txtdato.getValue(),txttidspunkt.getText(),txtbilettpris.getText(),txtbilettsalg.getText(),txtkontaktPerson.getText());
-        typeKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("type"));
-        artisterKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("artister"));
-        lokaleKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("lokale"));
-        datoKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement, LocalDate>("dato"));
-        tidspunktKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("tidspunkt"));
-        bilettprisKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("bilettpris"));
-        bilettsalgKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("bilettsalg"));
-        kontaktPersonKolonne.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("kontaktPerson"));
+        typeKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("typeSamlet"));
+        artisterKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("artisterSamlet"));
+        lokaleKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("lokaleSamlet"));
+        datoKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet, LocalDate>("datoSamlet"));
+        tidspunktKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("tidspunktSamlet"));
+        bilettprisKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("bilettprisSamlet"));
+        bilettsalgKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("bilettsalgSamlet"));
+        kontaktPersonKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("kontaktPersonSamlet"));
     }
 
 }

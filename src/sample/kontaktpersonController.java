@@ -60,8 +60,6 @@ public class kontaktpersonController implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         tableViewKontaktperson.setItems(arrangementKontaktpersonSamletObservableList);
@@ -73,16 +71,5 @@ public class kontaktpersonController implements Initializable {
         personSideKolonne.setCellFactory(TextFieldTableCell.forTableColumn());
         personFirmaKolonne.setCellFactory(TextFieldTableCell.forTableColumn());
         personAnnenInformasjonKolonne.setCellFactory(TextFieldTableCell.forTableColumn());
-
-
-
-
     }
-    /*
-    public void endreNavnKontaktPerson(TableColumn.CellEditEvent edittedCell){
-        Person personSelected=tableView.getSelectionModel().getSelectedItem(); // Tar det elementet du trykker på
-        personSelected.setFirstName(edittedCell.getNewValue().toString());
-    }
-    */
-
 }
