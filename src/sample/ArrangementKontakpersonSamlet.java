@@ -19,14 +19,13 @@ public class ArrangementKontakpersonSamlet {
     private SimpleIntegerProperty bilettsalgSamlet;
 
     private SimpleStringProperty kontaktPersonSamlet;
-    private SimpleStringProperty personNavnSamlet;
     private SimpleStringProperty personNummerSamlet;
     private SimpleStringProperty personEmailSamlet;
     private SimpleStringProperty personSideSamlet;
     private SimpleStringProperty personFirmaSamlet;
     private SimpleStringProperty personTekstSamlet;
 
-    public ArrangementKontakpersonSamlet(String arrangementSamlet, String typeSamlet, String artisterSamlet, String lokaleSamlet, LocalDate datoSamlet, String tidspunktSamlet, String bilettprisSamlet, Integer bilettsalgSamlet, String kontaktPersonSamlet, String personNavnSamlet, String personNummerSamlet, String personEmailSamlet, String personSideSamlet, String personFirmaSamlet, String personTekstSamlet) {
+    public ArrangementKontakpersonSamlet(String arrangementSamlet, String typeSamlet, String artisterSamlet, String lokaleSamlet, LocalDate datoSamlet, String tidspunktSamlet, String bilettprisSamlet, Integer bilettsalgSamlet, String kontaktPersonSamlet, String personNummerSamlet, String personEmailSamlet, String personSideSamlet, String personFirmaSamlet, String personTekstSamlet) {
         this.arrangementSamlet =new SimpleStringProperty(arrangementSamlet);
         this.typeSamlet = new SimpleStringProperty(typeSamlet);
         this.artisterSamlet =new SimpleStringProperty( artisterSamlet);
@@ -36,7 +35,6 @@ public class ArrangementKontakpersonSamlet {
         this.bilettprisSamlet = new SimpleStringProperty(bilettprisSamlet);
         this.bilettsalgSamlet = new SimpleIntegerProperty(bilettsalgSamlet);
         this.kontaktPersonSamlet =new SimpleStringProperty(kontaktPersonSamlet);
-        this.personNavnSamlet = new SimpleStringProperty(personNavnSamlet);
         this.personNummerSamlet = new SimpleStringProperty(personNummerSamlet);
         this.personEmailSamlet = new SimpleStringProperty(personEmailSamlet);
         this.personSideSamlet = new SimpleStringProperty(personSideSamlet);
@@ -58,7 +56,6 @@ public class ArrangementKontakpersonSamlet {
                 ", bilettprisSamlet=" + bilettprisSamlet +
                 ", bilettsalgSamlet=" + bilettsalgSamlet +
                 ", kontaktPersonSamlet=" + kontaktPersonSamlet +
-                ", personNavnSamlet=" + personNavnSamlet +
                 ", personNummerSamlet=" + personNummerSamlet +
                 ", personEmailSamlet=" + personEmailSamlet +
                 ", personSideSamlet=" + personSideSamlet +
@@ -171,18 +168,6 @@ public class ArrangementKontakpersonSamlet {
 
     public void setKontaktPersonSamlet(String kontaktPersonSamlet) {
         this.kontaktPersonSamlet.set(kontaktPersonSamlet);
-    }
-
-    public String getPersonNavnSamlet() {
-        return personNavnSamlet.get();
-    }
-
-    public SimpleStringProperty personNavnSamletProperty() {
-        return personNavnSamlet;
-    }
-
-    public void setPersonNavnSamlet(String personNavnSamlet) {
-        this.personNavnSamlet.set(personNavnSamlet);
     }
 
     public String getPersonNummerSamlet() {

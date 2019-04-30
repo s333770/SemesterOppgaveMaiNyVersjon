@@ -29,7 +29,6 @@
                   <Label text="Tidspunkt" />
                   <Label text="Bilettpris" />
                   <Label text="Antall ledige bilettter" />
-                  <Label text="Kontaktperson" />
                </children>
             </VBox>
             <VBox prefHeight="401.0" prefWidth="165.0" spacing="7.0">
@@ -42,7 +41,6 @@
                   <TextField fx:id="txttidspunkt" />
                   <TextField fx:id="txtbilettpris" />
                   <TextField fx:id="txtbilettsalg" />
-                  <TextField fx:id="txtkontaktPerson" />
                </children>
             </VBox>
             <VBox prefHeight="287.0" prefWidth="266.0" spacing="30.0">
@@ -67,7 +65,7 @@
                         <Label text="Nettside" GridPane.rowIndex="3" />
                         <Label text="Firma" GridPane.rowIndex="4" />
                         <Label text="Ekstra informasjon:" GridPane.rowIndex="5" />
-                        <TextField fx:id="txtnavn" GridPane.columnIndex="1" />
+                        <TextField fx:id="txtkontaktPerson" GridPane.columnIndex="1" />
                         <TextField fx:id="txtpersonnummer" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <TextField fx:id="txtemail" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <TextField fx:id="txtnettside" GridPane.columnIndex="1" GridPane.rowIndex="3" />
