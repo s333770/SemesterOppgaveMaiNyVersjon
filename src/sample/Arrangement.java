@@ -12,7 +12,7 @@ public class Arrangement {
     private String lokale;
     private LocalDate dato;
     private String tidspunkt;
-    private String bilettpris;
+    private int bilettpris;
     private int bilettsalg;
     private String kontaktPerson;
 
@@ -21,7 +21,7 @@ public class Arrangement {
 
 
 
-    public Arrangement(String arrangement, String type, String artister, String lokale, LocalDate dato, String tidspunkt, String bilettpris, int bilettsalg, String kontaktPerson) {
+    public Arrangement(String arrangement, String type, String artister, String lokale, LocalDate dato, String tidspunkt, int bilettpris, int bilettsalg, String kontaktPerson) {
         this.arrangement = arrangement;
         this.type = type;
         this.artister = artister;
@@ -82,11 +82,11 @@ public class Arrangement {
         this.tidspunkt = tidspunkt;
     }
 
-    public String getBilettpris() {
+    public int getBilettpris() {
         return bilettpris;
     }
 
-    public void setBilettpris(String bilettpris) {
+    public void setBilettpris(int bilettpris) {
         this.bilettpris = bilettpris;
     }
 

@@ -16,7 +16,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ResourceBundle;
@@ -69,20 +71,26 @@ public class Controller implements Initializable{
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        arrangementObservableList.add(new Arrangement("Disko","Kinosal","Lady Gaga", "Kjeller",LocalDate.of(1915, Month.DECEMBER,12),"19:00","100",100,"Fredrik"));
+        arrangementObservableList.add(new Arrangement("Disko","Kinosal","Lady Gaga", "Kjeller",LocalDate.of(1915, Month.DECEMBER,12),"19:00",100,100,"Fredrik"));
         arrangementKontaktpersonSamletObservableList.add(new ArrangementKontakpersonSamlet("Konsert","kino","Hellbillies","Menighetshuset",LocalDate.of(1915, Month.DECEMBER,12),"19:00","199",100,"Fredrik","Fredrik Ulvestad","090891","tm2_93@hotmail.com","www.Fredrik.com","Inget firma"));
         setTabellVerdier("arrangement", "type","artister","lokale","dato","tidspunkt","bilettpris","bilettsalg","kontaktPerson");
         tableView.setItems(arrangementKontaktpersonSamletObservableList);
     }
 
-    public void lastInnStage(javafx.event.ActionEvent actionEvent,String fxmlFil)throws IOException{
-        FXMLLoader loader= new FXMLLoader();
-        loader.setLocation(getClass().getResource(fxmlFil));
-        Parent tableViewParent= loader.load();
-        Scene tableViewScene=new Scene(tableViewParent);
-        Stage window= (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-        window.setScene(tableViewScene);
-        window.show();
+    public void lastInnStage(javafx.event.ActionEvent actionEvent,String fxmlFil){
+        try{
+            FXMLLoader loader= new FXMLLoader();
+            loader.setLocation(getClass().getResource(fxmlFil));
+            Parent tableViewParent= loader.load();
+            Scene tableViewScene=new Scene(tableViewParent);
+            Stage window= (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+            window.setScene(tableViewScene);
+            window.show();
+        }
+         catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
     public void setTabellVerdier(String arrangement, String type,String artister, String lokale, String dato, String tidspunkt,String bilettPris,String bilettsalg, String kontaktPerson){
         arrangementKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("arrangementSamlet"));

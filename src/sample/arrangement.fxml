@@ -17,11 +17,11 @@
 
 <AnchorPane prefHeight="814.0" prefWidth="911.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ArrangementController">
    <children>
-      <HBox layoutY="70.0" prefHeight="287.0" prefWidth="911.0" spacing="30.0">
+      <HBox alignment="CENTER" layoutY="70.0" prefHeight="287.0" prefWidth="911.0" spacing="30.0">
          <children>
-            <VBox prefHeight="456.0" prefWidth="202.0" spacing="15.0">
+            <VBox prefHeight="287.0" prefWidth="132.0" spacing="15.0">
                <children>
-                  <Label text="Arrangement" />
+                  <Label text="Navn på arrangement" />
                   <Label text="Type" />
                   <Label text="Artister/Personer" />
                   <Label text="Lokale" />
@@ -77,7 +77,7 @@
             </VBox>
          </children>
       </HBox>
-      <Label layoutX="84.0" layoutY="30.0" text="Arrangement">
+      <Label layoutX="106.0" layoutY="31.0" text="Arrangement">
          <font>
             <Font name="System Bold Italic" size="22.0" />
          </font>
@@ -97,7 +97,7 @@
         </columns>
       </TableView>
       <Button layoutX="358.0" layoutY="364.0" mnemonicParsing="false" onAction="#tilbakeTilStartside" text="Tilbake til startside" />
-      <Label layoutX="537.0" layoutY="33.0" text="KontaktPerson">
+      <Label layoutX="531.0" layoutY="34.0" text="KontaktPerson">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>

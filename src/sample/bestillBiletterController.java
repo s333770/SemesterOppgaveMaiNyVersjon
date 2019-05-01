@@ -61,35 +61,78 @@ public class bestillBiletterController implements Initializable {
     @FXML Label emailLabel;
     @FXML Label antallBiletterLabel;
 
+    Alert informasjonboks = new Alert(Alert.AlertType.INFORMATION);
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         antallBiletterChoiceBox.getItems().addAll(1,2,3,4,5,6,7,8,9,10,11,12);
         setTabellVerdier("arrangement", "type","artister","lokale","dato","tidspunkt","bilettpris","bilettsalg","kontaktPerson");
         tableView.setItems(arrangementKontaktpersonSamletObservableList);
+    }
+    public void bestillBiletterPushed(javafx.event.ActionEvent actionEvent) throws ElementIkkeValgtException,InputException,NullPointerException {
+        try {
+            if (navnBilettTextfield.getText() == null || navnBilettTextfield.getText().trim().isEmpty() || emailBilettTextfield.getText() == null || emailBilettTextfield.getText().trim().isEmpty() || telefonBiletterTextfield.getText() == null || telefonBiletterTextfield.getText().trim().isEmpty()) {
+                throw new InputException("Alle feltene er ikke fylt ut i bestiller");
+            }
+            navnLabel.setText(navnBilettTextfield.getText());
+            telefonnummerLabel.setText(telefonBiletterTextfield.getText());
+            emailLabel.setText(emailBilettTextfield.getText());
+        } catch (InputException e) {
+            System.err.println(e.getMessage());
+            informasjonboks.setTitle("Feil i en av tekstboksene");
+            informasjonboks.setContentText(e.getMessage());
+            informasjonboks.show();
+        }
+        try {
+            ArrangementKontakpersonSamlet valgtArrangement = tableView.getSelectionModel().getSelectedItem();
+            if (valgtArrangement == null) {
+                throw new ElementIkkeValgtException("Du må velge et element for å bestille bilett");
+            }
+        } catch (ElementIkkeValgtException e) {
+            System.err.println(e.getMessage());
+            informasjonboks.setContentText(e.getMessage());
+            informasjonboks.show();
+        }
+        try {
+            ArrangementKontakpersonSamlet valgtArrangement = tableView.getSelectionModel().getSelectedItem();
+            if (valgtArrangement.getBilettsalgSamlet().getValue() == null) {
+                throw new NullPointerException("NullPointerException");
+            }
 
+        } catch (NullPointerException e) {
+            System.err.println(e.getMessage());
+            informasjonboks.setTitle("NullPointerException");
+            informasjonboks.setContentText(e.getMessage());
+            informasjonboks.show();
+        }
+        try {
+            if (antallBiletterChoiceBox.getSelectionModel().isEmpty()) {
+                throw new ElementIkkeValgtException("Du må velge antall biletter i ChoiceBox");
+            }
+        } catch (ElementIkkeValgtException e) {
+            System.err.println(e.getMessage());
+            informasjonboks.setContentText(e.getMessage());
+            informasjonboks.show();
+        }
+        
+            ArrangementKontakpersonSamlet valgtArrangement = tableView.getSelectionModel().getSelectedItem();
+            int antallBiletter = valgtArrangement.getBilettsalgSamlet().intValue();
+            int antallBiletterBestiler = Integer.parseInt(antallBiletterChoiceBox.getValue().toString());
+
+            int sum = (Integer) antallBiletter - (Integer) antallBiletterBestiler;
+            System.out.println(sum);
+            valgtArrangement.setBilettsalgSamlet(sum);
+            tableView.refresh();
+
+            arrangementLabel.setText(valgtArrangement.getArrangementSamlet().toString());
+            antallBiletterLabel.setText(antallBiletterChoiceBox.getValue().toString());
+            stedLabel.setText(valgtArrangement.getTypeSamlet().toString());
+            tidspunktLabel.setText(valgtArrangement.getTidspunktSamlet().toString());
+            datoLabel.setText(valgtArrangement.getDatoSamlet().toString());
 
 
     }
 
-    public void bestillBiletterPushed(javafx.event.ActionEvent actionEvent) {
-        ArrangementKontakpersonSamlet valgtArrangement=tableView.getSelectionModel().getSelectedItem();
-       int antallBiletter= valgtArrangement.getBilettsalgSamlet().intValue();
-        int antallBiletterBestiler=Integer.parseInt(antallBiletterChoiceBox.getValue().toString());
-
-        int sum=(Integer)antallBiletter-(Integer)antallBiletterBestiler;
-        System.out.println(sum);
-        valgtArrangement.setBilettsalgSamlet(sum);
-        tableView.refresh();
-
-        arrangementLabel.setText(valgtArrangement.getArrangementSamlet().toString());
-        antallBiletterLabel.setText(antallBiletterChoiceBox.getValue().toString());
-        stedLabel.setText(valgtArrangement.getTypeSamlet().toString());
-        tidspunktLabel.setText(valgtArrangement.getTidspunktSamlet().toString());
-        datoLabel.setText(valgtArrangement.getDatoSamlet().toString());
-        navnLabel.setText(navnBilettTextfield.getText());
-        telefonnummerLabel.setText(telefonBiletterTextfield.getText());
-        emailLabel.setText(emailBilettTextfield.getText());
-    }
     public void LagreDataTilFil(javafx.event.ActionEvent actionEvent){
 
     }
