@@ -8,8 +8,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -134,6 +136,10 @@ public class bestillBiletterController extends SkrivData implements Initializabl
     }
 
     public void lagreDataTilCSVFil(javafx.event.ActionEvent actionEvent) throws FileNotFoundException {
+        FileChooser filvelger= new FileChooser();
+        File valgtFil= filvelger.showOpenDialog(null);
+        if
+
         SkrivUtDataCSV csv= new SkrivUtDataCSV();
         csv.skrivDataTilCSVFil(tableView.getSelectionModel().getSelectedItem());
 

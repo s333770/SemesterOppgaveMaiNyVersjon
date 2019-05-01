@@ -149,7 +149,19 @@ public class ArrangementController implements Initializable {
     @FXML public void lesInnArrangement(ActionEvent event) throws IOException{
         FileChooser filvelger= new FileChooser();
         File valgtFil= filvelger.showOpenDialog(null);
-        
+        Scanner input=new Scanner(valgtFil);
+        String[] verdier = new String[0];
+        while (input.hasNext()) {
+            String word = input.next();
+            verdier=word.split(",");
+            System.out.println(verdier[0]);
+        }
+        for(int i=0; i<verdier.length; i++){
+            System.out.println(verdier[i]);
+        }
+        arrangementKontaktpersonSamletObservableList.add(new ArrangementKontakpersonSamlet(verdier[0],verdier[1],verdier[2],verdier[3],LocalDate.of(1915, Month.DECEMBER,12),verdier[5],verdier[6],Integer.parseInt(verdier[7]),verdier[8],verdier[9],verdier[10],verdier[11],verdier[12],verdier[13]));
+        tableView.refresh();
+
 
 
         //arrangementKontaktpersonSamletObservableList.add(new ArrangementKontakpersonSamlet())
