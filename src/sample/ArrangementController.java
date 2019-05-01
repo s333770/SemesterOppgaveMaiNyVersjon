@@ -11,14 +11,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.InputMismatchException;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -102,8 +105,6 @@ public class ArrangementController implements Initializable {
 
     @FXML
     void btnRegistrer(ActionEvent event) throws InputException {
-        //Try catch for validering av Input-feltene
-
         try {
             if (txtarrangement.getText() == null || txtarrangement.getText().trim().isEmpty() || txttype.getText() == null || txttype.getText().trim().isEmpty() || txtartister.getText() == null || txtartister.getText().trim().isEmpty() ||
                     txttidspunkt.getText() == null || txttidspunkt.getText().trim().isEmpty() || txtbilettpris.getText() == null || txtbilettpris.getText().trim().isEmpty() || txtbilettsalg.getText() == null || txtbilettsalg.getText().trim().isEmpty()) {
@@ -144,6 +145,15 @@ public class ArrangementController implements Initializable {
     @FXML
     public void tilbakeTilStartside(ActionEvent event) throws IOException {
         lastInnStage(event, "/sample/sample.fxml");
+    }
+    @FXML public void lesInnArrangement(ActionEvent event) throws IOException{
+        FileChooser filvelger= new FileChooser();
+        File valgtFil= filvelger.showOpenDialog(null);
+        
+
+
+        //arrangementKontaktpersonSamletObservableList.add(new ArrangementKontakpersonSamlet())
+
 
     }
 
@@ -200,16 +210,6 @@ public class ArrangementController implements Initializable {
     public void endreArrangementNavn(TableColumn.CellEditEvent edittedCell) {
         ArrangementKontakpersonSamlet valgtArrangement = tableView.getSelectionModel().getSelectedItem(); // Tar det elementet du trykker på
         valgtArrangement.setArrangementSamlet(edittedCell.getNewValue().toString());
-    }
-
-    public void lesInnBilett(ActionEvent actionEvent) {
-    }
-
-    public void skrivUtBilett(ActionEvent actionEvent) {
-    }
-
-    public void getTextFieldVerdi(String sometingsometing) {
-
     }
 
     public void lastInnStage(javafx.event.ActionEvent actionEvent, String fxmlFil) {

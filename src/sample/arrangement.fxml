@@ -134,7 +134,6 @@
             <Label fx:id="telefonnummerLabelKontaktPerson" prefHeight="17.0" prefWidth="62.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button layoutX="662.0" layoutY="364.0" mnemonicParsing="false" onAction="#lesInnBilett" text="Les fra fil" />
-      <Button layoutX="755.0" layoutY="364.0" mnemonicParsing="false" onAction="#skrivUtBilett" text="Skriv til fil" />
+      <Button layoutX="656.0" layoutY="364.0" mnemonicParsing="false" onAction="#lesInnArrangement" text="Les inn Arrangement" />
    </children>
 </AnchorPane>

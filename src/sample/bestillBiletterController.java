@@ -10,18 +10,17 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
-import static sample.Arrangement.arrangementObservableList;
+
 import static sample.ArrangementKontakpersonSamlet.arrangementKontaktpersonSamletObservableList;
 
 
 
-public class bestillBiletterController implements Initializable {
-
+public class bestillBiletterController extends SkrivData implements Initializable  {
 
     @FXML private ChoiceBox antallBiletterChoiceBox;
 
@@ -70,6 +69,7 @@ public class bestillBiletterController implements Initializable {
         tableView.setItems(arrangementKontaktpersonSamletObservableList);
     }
     public void bestillBiletterPushed(javafx.event.ActionEvent actionEvent) throws ElementIkkeValgtException,InputException,NullPointerException {
+        System.out.println(tableView.getSelectionModel().getSelectedItem());
         try {
             if (navnBilettTextfield.getText() == null || navnBilettTextfield.getText().trim().isEmpty() || emailBilettTextfield.getText() == null || emailBilettTextfield.getText().trim().isEmpty() || telefonBiletterTextfield.getText() == null || telefonBiletterTextfield.getText().trim().isEmpty()) {
                 throw new InputException("Alle feltene er ikke fylt ut i bestiller");
@@ -114,7 +114,7 @@ public class bestillBiletterController implements Initializable {
             informasjonboks.setContentText(e.getMessage());
             informasjonboks.show();
         }
-        
+
             ArrangementKontakpersonSamlet valgtArrangement = tableView.getSelectionModel().getSelectedItem();
             int antallBiletter = valgtArrangement.getBilettsalgSamlet().intValue();
             int antallBiletterBestiler = Integer.parseInt(antallBiletterChoiceBox.getValue().toString());
@@ -133,9 +133,27 @@ public class bestillBiletterController implements Initializable {
 
     }
 
-    public void LagreDataTilFil(javafx.event.ActionEvent actionEvent){
+    public void lagreDataTilCSVFil(javafx.event.ActionEvent actionEvent) throws FileNotFoundException {
+        SkrivUtDataCSV csv= new SkrivUtDataCSV();
+        csv.skrivDataTilCSVFil(tableView.getSelectionModel().getSelectedItem());
+
+
 
     }
+
+
+    public void lagreDataTilJOBJFil(javafx.event.ActionEvent actionEvent) throws FileNotFoundException {
+        SkrivUtDataJOBJ jobj= new SkrivUtDataJOBJ();
+        jobj.skrivUtDataJobj(tableView.getSelectionModel().getSelectedItem());
+    }
+
+    public void lesUtDataTilFil(javafx.event.ActionEvent actionEvent) throws IOException {
+        LesData lesdata=new LesDataCSV();
+        ((LesDataCSV) lesdata).lesDataCSV();
+
+    }
+
+
     public void tilbakeTilStartside(javafx.event.ActionEvent actionEvent) throws IOException {
         FXMLLoader loader= new FXMLLoader();
         loader.setLocation(getClass().getResource("/sample/sample.fxml"));

@@ -47,7 +47,7 @@ public class ArrangementKontakpersonSamlet {
     @Override
     public String toString() {
         return "ArrangementKontakpersonSamlet{" +
-                "arrangementSamlet=" + arrangementSamlet +
+                "arrangementSamlet=" + arrangementSamlet.toString() +
                 ", typeSamlet=" + typeSamlet +
                 ", artisterSamlet=" + artisterSamlet +
                 ", lokaleSamlet=" + lokaleSamlet +
