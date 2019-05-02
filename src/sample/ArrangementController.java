@@ -39,6 +39,7 @@ import static sample.Kontaktperson.kontaktpersonObservableList;
 public class ArrangementController implements Initializable {
 
 
+
     @FXML
     private TableView<ArrangementKontakpersonSamlet> tableView;
     @FXML
@@ -172,15 +173,16 @@ public class ArrangementController implements Initializable {
     }
     @FXML public void skrivUtArrangement(ActionEvent event) throws IOException, InvalidFormatException {
         FileChooser filvelger = new FileChooser();
-        File valgtFil = filvelger.showOpenDialog(null);
-        Scanner input = new Scanner(valgtFil);
-        String filType=SkrivData.getFileExtension(valgtFil.toString());
+        File fil = filvelger.showSaveDialog(null);
+        String filType=SkrivData.getFileExtension(fil.toString());
+        System.out.println(tableView.getSelectionModel().getSelectedCells().get(0).getTableColumn());
+
         try {
             if (filType.equals("csv")) {
-               // SkrivData skrivDataData = new SkrivUtDataCSV(tableView.getSelectionModel().getSelectedCells());
+
             }
-            if (filType.equals("jobj")) {
-                LesData lesData=new LesDataJOBJ(input);
+            if (filType.equals("obj")) {
+               // ArrangementKontakpersonSamlet skrivUt=new ArrangementKontakpersonSamlet(tableView.getSelectionModel().getSelectedItem().getArrangementSamlet().toString(),tableView.getSelectionModel().getSelectedItem().getArrangementSamlet().toString(),
 
             } else {
                 throw new InvalidFormatException("Dette er ikke gyldige filtyper");
@@ -190,11 +192,7 @@ public class ArrangementController implements Initializable {
             System.err.println(e.getMessage());
         }
         tableView.refresh();
-
-
     }
-
-
         @FXML
     void oversiktKontaktPerson(ActionEvent event) throws ElementIkkeValgtException  {
         try{

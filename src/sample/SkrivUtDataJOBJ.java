@@ -1,18 +1,23 @@
 package sample;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
-import java.io.Serializable;
+import java.io.*;
 
 public class SkrivUtDataJOBJ extends SkrivData implements Serializable {
 
 
-    public void skrivUtDataJobj(Object hvaSomSkrives) throws FileNotFoundException {
-        FileOutputStream foss =new FileOutputStream("JOBJArrangement.jobj",true);
-        PrintWriter pww = new PrintWriter(foss);
-        pww.println(hvaSomSkrives);
-        pww.close();
+    public SkrivUtDataJOBJ(ArrangementKontakpersonSamlet skrivUt, File filType) {
+
+    }
+
+    public void skrivUtDataJobj(Object hvaSomSkrives, String filvei) throws FileNotFoundException {
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(filvei);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(hvaSomSkrives);
+            objectOutputStream.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
     }
 

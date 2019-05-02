@@ -8,9 +8,9 @@ public class SkrivUtDataCSV extends SkrivData {
 
 
     public void skrivDataTilCSVFil(Object hvaSomSkrives) throws FileNotFoundException {
-        FileOutputStream fos =new FileOutputStream("CSVArrangement.CSV",true);
-        PrintWriter pw = new PrintWriter(fos);
-        pw.println(hvaSomSkrives);
-        pw.close();
+        FileOutputStream fileOutputStream =new FileOutputStream("CSVArrangement.CSV",true);
+        PrintWriter printWriter = new PrintWriter(fileOutputStream);
+        printWriter.println(hvaSomSkrives);
+        printWriter.close();
     }
 }
