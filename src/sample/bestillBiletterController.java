@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,12 +12,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 import static sample.ArrangementKontakpersonSamlet.arrangementKontaktpersonSamletObservableList;
 
@@ -134,30 +134,16 @@ public class bestillBiletterController extends SkrivData implements Initializabl
 
 
     }
-
-    public void lagreDataTilCSVFil(javafx.event.ActionEvent actionEvent) throws FileNotFoundException {
+/*
+    public void lagreDataTilFil(javafx.event.ActionEvent actionEvent) throws FileNotFoundException {
         FileChooser filvelger= new FileChooser();
         File valgtFil= filvelger.showOpenDialog(null);
-
-
         SkrivUtDataCSV csv= new SkrivUtDataCSV();
         csv.skrivDataTilCSVFil(tableView.getSelectionModel().getSelectedItem());
 
-
-
     }
+    */
 
-
-    public void lagreDataTilJOBJFil(javafx.event.ActionEvent actionEvent) throws FileNotFoundException {
-        SkrivUtDataJOBJ jobj= new SkrivUtDataJOBJ();
-        jobj.skrivUtDataJobj(tableView.getSelectionModel().getSelectedItem());
-    }
-
-    public void lesUtDataTilFil(javafx.event.ActionEvent actionEvent) throws IOException {
-        LesData lesdata=new LesDataCSV();
-        ((LesDataCSV) lesdata).lesDataCSV();
-
-    }
 
 
     public void tilbakeTilStartside(javafx.event.ActionEvent actionEvent) throws IOException {
@@ -184,4 +170,27 @@ public class bestillBiletterController extends SkrivData implements Initializabl
         kontaktPersonKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("kontaktPersonSamlet"));
     }
 
+
+    public void lesUtDataTilFil(ActionEvent actionEvent) {
+
+    }
+    public void lagreDataTilFil(ActionEvent actionEvent) throws IOException {
+        FileChooser filvelger = new FileChooser();
+        File file = filvelger.showSaveDialog(null);
+        String filType=SkrivData.getFileExtension(file.toString());
+        System.out.println(file);
+        if(filType.equals("csv")){
+            file.createNewFile();
+            PrintWriter pw = new PrintWriter(file);
+            pw.println(tableView.getSelectionModel().getSelectedItem());
+            pw.close();
+        }
+        else if(filType.equals("jobj")){
+            file.createNewFile();
+            PrintWriter pw = new PrintWriter(file);
+            pw.println(tableView.getSelectionModel().getSelectedItem());
+            pw.close();
+        }
+
+    }
 }

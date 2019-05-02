@@ -1,28 +1,47 @@
 package sample;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import javafx.stage.FileChooser;
+
+import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
+
+import static sample.ArrangementKontakpersonSamlet.arrangementKontaktpersonSamletObservableList;
 
 public class LesDataCSV extends LesData {
 
-    public void lesDataCSV() throws IOException {
+    public LesDataCSV(Scanner input) {
+        this.lesData(input);
+    }
 
-
-        BufferedReader reader;
-        try {
-            reader = new BufferedReader(new FileReader(
-                    "\\C:\\Users\\Andreas\\Desktop\\text.txt"));
-            String line = reader.readLine();
-            while (line != null) {
-                System.out.println(line);
-                // leser neste linje
-                line = reader.readLine();
-            }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void lesData(Scanner input)  {
+        String[] verdier = new String[0];
+        while (input.hasNext()) {
+            String word = input.next();
+            verdier = word.split(",");
+            System.out.println(verdier[0]);
         }
+        for (int i = 0; i < verdier.length; i++) {
+            System.out.println(verdier[i]);
+        }
+        try{
+            if(verdier.length != 14){
+                throw new InputException("Det er feil lengde på arrayen, den må ha 14 elementer");
+            }
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            arrangementKontaktpersonSamletObservableList.add(new ArrangementKontakpersonSamlet(verdier[0], verdier[1], verdier[2], verdier[3], LocalDate.parse(verdier[4],formatter), verdier[5], Integer.parseInt(verdier[6]), Integer.parseInt(verdier[7]), verdier[8], verdier[9], verdier[10], verdier[11], verdier[12], verdier[13]));
+
+        }
+        catch(InputException e) {
+            System.err.println(e.getMessage());
+
+        }
+        catch(NumberFormatException e){
+            System.err.println("BilettPris og antall biletter må leses inn som integer");
+        }
+
+
     }
 
 }
