@@ -15,7 +15,7 @@ public class ArrangementKontakpersonSamlet {
     private SimpleStringProperty lokaleSamlet;
     private LocalDate datoSamlet;
     private SimpleStringProperty tidspunktSamlet;
-    private SimpleStringProperty bilettprisSamlet;
+    private SimpleIntegerProperty bilettprisSamlet;
     private SimpleIntegerProperty bilettsalgSamlet;
 
     private SimpleStringProperty kontaktPersonSamlet;
@@ -25,14 +25,14 @@ public class ArrangementKontakpersonSamlet {
     private SimpleStringProperty personFirmaSamlet;
     private SimpleStringProperty personTekstSamlet;
 
-    public ArrangementKontakpersonSamlet(String arrangementSamlet, String typeSamlet, String artisterSamlet, String lokaleSamlet, LocalDate datoSamlet, String tidspunktSamlet, String bilettprisSamlet, Integer bilettsalgSamlet, String kontaktPersonSamlet, String personNummerSamlet, String personEmailSamlet, String personSideSamlet, String personFirmaSamlet, String personTekstSamlet) {
+    public ArrangementKontakpersonSamlet(String arrangementSamlet, String typeSamlet, String artisterSamlet, String lokaleSamlet, LocalDate datoSamlet, String tidspunktSamlet, Integer bilettprisSamlet, Integer bilettsalgSamlet, String kontaktPersonSamlet, String personNummerSamlet, String personEmailSamlet, String personSideSamlet, String personFirmaSamlet, String personTekstSamlet) {
         this.arrangementSamlet =new SimpleStringProperty(arrangementSamlet);
         this.typeSamlet = new SimpleStringProperty(typeSamlet);
         this.artisterSamlet =new SimpleStringProperty( artisterSamlet);
         this.lokaleSamlet = new SimpleStringProperty(lokaleSamlet);
         this.datoSamlet = datoSamlet;
         this.tidspunktSamlet =new SimpleStringProperty( tidspunktSamlet);
-        this.bilettprisSamlet = new SimpleStringProperty(bilettprisSamlet);
+        this.bilettprisSamlet = new SimpleIntegerProperty(bilettprisSamlet);
         this.bilettsalgSamlet = new SimpleIntegerProperty(bilettsalgSamlet);
         this.kontaktPersonSamlet =new SimpleStringProperty(kontaktPersonSamlet);
         this.personNummerSamlet = new SimpleStringProperty(personNummerSamlet);
@@ -134,15 +134,15 @@ public class ArrangementKontakpersonSamlet {
         this.tidspunktSamlet.set(tidspunktSamlet);
     }
 
-    public SimpleStringProperty getBilettprisSamlet() {
+    public SimpleIntegerProperty getBilettprisSamlet() {
         return bilettprisSamlet;
     }
 
-    public SimpleStringProperty bilettprisSamletProperty() {
+    public SimpleIntegerProperty bilettprisSamletProperty() {
         return bilettprisSamlet;
     }
 
-    public void setBilettprisSamlet(String bilettprisSamlet) {
+    public void setBilettprisSamlet(Integer bilettprisSamlet) {
         this.bilettprisSamlet.set(bilettprisSamlet);
     }
 

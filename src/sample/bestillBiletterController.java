@@ -138,7 +138,7 @@ public class bestillBiletterController extends SkrivData implements Initializabl
     public void lagreDataTilCSVFil(javafx.event.ActionEvent actionEvent) throws FileNotFoundException {
         FileChooser filvelger= new FileChooser();
         File valgtFil= filvelger.showOpenDialog(null);
-        if
+
 
         SkrivUtDataCSV csv= new SkrivUtDataCSV();
         csv.skrivDataTilCSVFil(tableView.getSelectionModel().getSelectedItem());

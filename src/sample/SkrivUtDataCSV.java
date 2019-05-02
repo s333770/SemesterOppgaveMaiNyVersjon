@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 
 public class SkrivUtDataCSV extends SkrivData {
 
-
+    @Override
     public void skrivDataTilCSVFil(Object hvaSomSkrives) throws FileNotFoundException {
         FileOutputStream fos =new FileOutputStream("CSVArrangement.CSV",true);
         PrintWriter pw = new PrintWriter(fos);

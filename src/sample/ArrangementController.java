@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -106,6 +107,8 @@ public class ArrangementController implements Initializable {
     @FXML
     void btnRegistrer(ActionEvent event) throws InputException {
         try {
+            int valideringInteger = 0;
+            int valideringInteger2 = 0;
             if (txtarrangement.getText() == null || txtarrangement.getText().trim().isEmpty() || txttype.getText() == null || txttype.getText().trim().isEmpty() || txtartister.getText() == null || txtartister.getText().trim().isEmpty() ||
                     txttidspunkt.getText() == null || txttidspunkt.getText().trim().isEmpty() || txtbilettpris.getText() == null || txtbilettpris.getText().trim().isEmpty() || txtbilettsalg.getText() == null || txtbilettsalg.getText().trim().isEmpty()) {
                 throw new InputException("Alle feltene er ikke fylt ut i arrangement");
@@ -114,58 +117,62 @@ public class ArrangementController implements Initializable {
                     txtnettside.getText() == null || txtnettside.getText().trim().isEmpty() || txtfirma.getText() == null || txtfirma.getText().trim().isEmpty() || txtanneninfo.getText() == null || txtanneninfo.getText().trim().isEmpty()) {
                 throw new InputException("Alle feltene er ikke fylt ut i kontaktperson");
             }
+            Integer.parseInt(txtbilettpris.getText());
+            Integer.parseInt(txtbilettsalg.getText());
+
+            arrangementObservableList.add(new Arrangement(txtarrangement.getText(), txttype.getText(), txtartister.getText(), (String) choiceBox.getValue(), txtdato.getValue(), txttidspunkt.getText(), Integer.parseInt(txtbilettpris.getText()), Integer.parseInt(txtbilettsalg.getText()), txtkontaktPerson.getText()));
+            setTabellVerdier("arrangement", "type", "artister", "lokale", "dato", "tidspunkt", "bilettpris", "bilettsalg", "kontaktPerson");
+            kontaktpersonObservableList.add(new Kontaktperson(txtkontaktPerson.getText(), txtpersonnummer.getText(), txtemail.getText(), txtnettside.getText(), txtfirma.getText(), txtanneninfo.getText()));
+            arrangementKontaktpersonSamletObservableList.add(new ArrangementKontakpersonSamlet(txtarrangement.getText(), txttype.getText(), txtartister.getText(), (String) choiceBox.getValue(), txtdato.getValue(), txttidspunkt.getText(), Integer.parseInt(txtbilettpris.getText()), Integer.parseInt(txtbilettsalg.getText()), txtkontaktPerson.getText(), txtpersonnummer.getText(), txtemail.getText(), txtnettside.getText(), txtfirma.getText(), txtanneninfo.getText()));
+
         } catch (InputException e) {
             System.err.println(e.getMessage());
             informasjonboks.setTitle("Feil i en av tekstboksene");
             informasjonboks.setContentText(e.getMessage());
             informasjonboks.show();
         }
-
-        int valideringInteger = 0;
-
-        int valideringInteger2 = 0;
-        try {
-            valideringInteger = Integer.parseInt(txtbilettpris.getText());
-            valideringInteger2 = Integer.parseInt(txtbilettsalg.getText());
-        } catch (NumberFormatException e) {
+        catch (NumberFormatException e){
             System.err.println(e.getMessage());
             informasjonboks.setTitle("Feil i en av tekstboksene");
-            informasjonboks.setContentText("Feltene må være integer");
+            informasjonboks.setContentText("Bilettsalg og antall biletter må være på IntegerForm");
             informasjonboks.show();
         }
-
-
-        arrangementObservableList.add(new Arrangement(txtarrangement.getText(), txttype.getText(), txtartister.getText(), (String) choiceBox.getValue(), txtdato.getValue(), txttidspunkt.getText(), Integer.parseInt(txtbilettpris.getText()), Integer.parseInt(txtbilettsalg.getText()), txtkontaktPerson.getText()));
-        setTabellVerdier("arrangement", "type", "artister", "lokale", "dato", "tidspunkt", "bilettpris", "bilettsalg", "kontaktPerson");
-        kontaktpersonObservableList.add(new Kontaktperson(txtkontaktPerson.getText(), txtpersonnummer.getText(), txtemail.getText(), txtnettside.getText(), txtfirma.getText(), txtanneninfo.getText()));
-        arrangementKontaktpersonSamletObservableList.add(new ArrangementKontakpersonSamlet(txtarrangement.getText(), txttype.getText(), txtartister.getText(), (String) choiceBox.getValue(), txtdato.getValue(), txttidspunkt.getText(), txtbilettpris.getText(), Integer.parseInt(txtbilettsalg.getText()), txtkontaktPerson.getText(), txtpersonnummer.getText(), txtemail.getText(), txtnettside.getText(), txtfirma.getText(), txtanneninfo.getText()));
-
     }
 
     @FXML
     public void tilbakeTilStartside(ActionEvent event) throws IOException {
         lastInnStage(event, "/sample/sample.fxml");
     }
-    @FXML public void lesInnArrangement(ActionEvent event) throws IOException{
-        FileChooser filvelger= new FileChooser();
-        File valgtFil= filvelger.showOpenDialog(null);
-        Scanner input=new Scanner(valgtFil);
+    @FXML public void lesInnArrangement(ActionEvent event) throws IOException {
+        FileChooser filvelger = new FileChooser();
+        File valgtFil = filvelger.showOpenDialog(null);
+        Scanner input = new Scanner(valgtFil);
         String[] verdier = new String[0];
         while (input.hasNext()) {
             String word = input.next();
-            verdier=word.split(",");
+            verdier = word.split(",");
             System.out.println(verdier[0]);
         }
-        for(int i=0; i<verdier.length; i++){
+        for (int i = 0; i < verdier.length; i++) {
             System.out.println(verdier[i]);
         }
-        arrangementKontaktpersonSamletObservableList.add(new ArrangementKontakpersonSamlet(verdier[0],verdier[1],verdier[2],verdier[3],LocalDate.of(1915, Month.DECEMBER,12),verdier[5],verdier[6],Integer.parseInt(verdier[7]),verdier[8],verdier[9],verdier[10],verdier[11],verdier[12],verdier[13]));
+        try{
+            if(verdier.length != 14){
+                throw new InputException("Det er feil lengde på arrayen, den må ha 14 elementer");
+            }
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            arrangementKontaktpersonSamletObservableList.add(new ArrangementKontakpersonSamlet(verdier[0], verdier[1], verdier[2], verdier[3], LocalDate.parse(verdier[4],formatter), verdier[5], Integer.parseInt(verdier[6]), Integer.parseInt(verdier[7]), verdier[8], verdier[9], verdier[10], verdier[11], verdier[12], verdier[13]));
+
+        }
+        catch(InputException e) {
+            System.err.println(e.getMessage());
+
+        }
+        catch(NumberFormatException e){
+            System.err.println("BilettPris og antall biletter må leses inn som integer");
+        }
         tableView.refresh();
-
-
-
-        //arrangementKontaktpersonSamletObservableList.add(new ArrangementKontakpersonSamlet())
-
+        System.out.println(verdier[4].toString());
 
     }
 
@@ -199,13 +206,9 @@ public class ArrangementController implements Initializable {
             System.out.println(arrangementObservableList.get(0).toString());
             setTabellVerdier("arrangement", "type", "artister", "lokale", "dato", "tidspunkt", "bilettpris", "bilettsalg", "kontaktPerson");
         }
-        // arrangementObservableList.add(new Arrangement("Konsert","Konsert","Lady Gaga","Kirke",LocalDate.of(1986, Month.JULY,21),"19:00","199","100","Leif"));
-
         tableView.setItems(arrangementKontaktpersonSamletObservableList);
         choiceBox.getItems().addAll("Kino", "Konsertsal", "Foredragssal", "Åpent areale");
-
     }
-
     public void setTabellVerdier(String arrangement, String type, String artister, String lokale, String dato, String tidspunkt, String bilettPris, String bilettsalg, String kontaktPerson) {
         arrangementKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet, String>("arrangementSamlet"));
         // leggTilDataObservableList(txtarrangement.getText(),txttype.getText(),txtartister.getText(), (String) choiceBox.getValue(),txtdato.getValue(),txttidspunkt.getText(),txtbilettpris.getText(),txtbilettsalg.getText(),txtkontaktPerson.getText());
