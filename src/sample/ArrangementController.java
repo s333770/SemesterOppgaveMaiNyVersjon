@@ -12,8 +12,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.converter.IntegerStringConverter;
+import javafx.util.converter.LocalDateStringConverter;
 
 import java.io.File;
 import java.io.IOException;
@@ -51,9 +54,9 @@ public class ArrangementController implements Initializable {
     @FXML
     TableColumn<ArrangementKontakpersonSamlet, String> tidspunktKolonne;
     @FXML
-    TableColumn<ArrangementKontakpersonSamlet, String> bilettprisKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, Integer> bilettprisKolonne;
     @FXML
-    TableColumn<ArrangementKontakpersonSamlet, String> bilettsalgKolonne;
+    TableColumn<ArrangementKontakpersonSamlet, Integer> bilettsalgKolonne;
     @FXML
     TableColumn<ArrangementKontakpersonSamlet, String> kontaktPersonKolonne;
 
@@ -194,13 +197,23 @@ public class ArrangementController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Arrangement arrangement;
         if (arrangementObservableList.size() > 0) {
             System.out.println(arrangementObservableList.get(0).toString());
             setTabellVerdier("arrangement", "type", "artister", "lokale", "dato", "tidspunkt", "bilettpris", "bilettsalg", "kontaktPerson");
         }
         tableView.setItems(arrangementKontaktpersonSamletObservableList);
         choiceBox.getItems().addAll("Kino", "Konsertsal", "Foredragssal", "Åpent areale");
+        tableView.setEditable(true);
+        arrangementKolonne.setCellFactory(TextFieldTableCell.forTableColumn());
+        typeKolonne.setCellFactory(TextFieldTableCell.forTableColumn());
+        artisterKolonne.setCellFactory(TextFieldTableCell.forTableColumn());
+        lokaleKolonne.setCellFactory(TextFieldTableCell.forTableColumn());
+        tidspunktKolonne.setCellFactory(TextFieldTableCell.forTableColumn());
+        kontaktPersonKolonne.setCellFactory(TextFieldTableCell.forTableColumn());
+        bilettsalgKolonne.setCellFactory(TextFieldTableCell.<ArrangementKontakpersonSamlet,Integer>forTableColumn(new IntegerStringConverter()));
+        bilettprisKolonne.setCellFactory(TextFieldTableCell.<ArrangementKontakpersonSamlet,Integer>forTableColumn(new IntegerStringConverter()));
+        datoKolonne.setCellFactory(TextFieldTableCell.<ArrangementKontakpersonSamlet,LocalDate>forTableColumn(new LocalDateStringConverter()));
+
     }
     public void setTabellVerdier(String arrangement, String type, String artister, String lokale, String dato, String tidspunkt, String bilettPris, String bilettsalg, String kontaktPerson) {
         arrangementKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet, String>("arrangementSamlet"));
@@ -210,14 +223,19 @@ public class ArrangementController implements Initializable {
         lokaleKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet, String>("lokaleSamlet"));
         datoKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet, LocalDate>("datoSamlet"));
         tidspunktKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet, String>("tidspunktSamlet"));
-        bilettprisKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet, String>("bilettprisSamlet"));
-        bilettsalgKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet, String>("bilettsalgSamlet"));
+        bilettprisKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet, Integer>("bilettprisSamlet"));
+        bilettsalgKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet, Integer>("bilettsalgSamlet"));
         kontaktPersonKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet, String>("kontaktPersonSamlet"));
     }
-
+/*
     public void endreArrangementNavn(TableColumn.CellEditEvent edittedCell) {
         ArrangementKontakpersonSamlet valgtArrangement = tableView.getSelectionModel().getSelectedItem(); // Tar det elementet du trykker på
         valgtArrangement.setArrangementSamlet(edittedCell.getNewValue().toString());
+    }
+    */
+    public void slettArrangement(javafx.event.ActionEvent actionEvent){
+        tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedCells());
+        tableView.refresh();
     }
 
     public void lastInnStage(javafx.event.ActionEvent actionEvent, String fxmlFil) {
