@@ -148,7 +148,6 @@ public class ArrangementController implements Initializable {
         lastInnStage(event, "/sample/sample.fxml");
     }
     @FXML public void lesInnArrangement(ActionEvent event) throws IOException, InvalidFormatException {
-
         FileChooser filvelger = new FileChooser();
         File valgtFil = filvelger.showOpenDialog(null);
         Scanner input = new Scanner(valgtFil);
@@ -171,8 +170,32 @@ public class ArrangementController implements Initializable {
         }
         tableView.refresh();
     }
+    @FXML public void skrivUtArrangement(ActionEvent event) throws IOException, InvalidFormatException {
+        FileChooser filvelger = new FileChooser();
+        File valgtFil = filvelger.showOpenDialog(null);
+        Scanner input = new Scanner(valgtFil);
+        String filType=SkrivData.getFileExtension(valgtFil.toString());
+        try {
+            if (filType.equals("csv")) {
+               // SkrivData skrivDataData = new SkrivUtDataCSV(tableView.getSelectionModel().getSelectedCells());
+            }
+            if (filType.equals("jobj")) {
+                LesData lesData=new LesDataJOBJ(input);
 
-    @FXML
+            } else {
+                throw new InvalidFormatException("Dette er ikke gyldige filtyper");
+            }
+        }
+        catch(InvalidFormatException e){
+            System.err.println(e.getMessage());
+        }
+        tableView.refresh();
+
+
+    }
+
+
+        @FXML
     void oversiktKontaktPerson(ActionEvent event) throws ElementIkkeValgtException  {
         try{
 

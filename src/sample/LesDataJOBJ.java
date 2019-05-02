@@ -14,7 +14,5 @@ public class LesDataJOBJ extends LesData {
     @Override
     public void lesData(Scanner input) throws FileNotFoundException {
 
-
-
     }
 }
