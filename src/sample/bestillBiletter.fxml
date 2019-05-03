@@ -53,7 +53,7 @@
             <TableColumn fx:id="kontaktPersonKolonne" prefWidth="166.0" text="Kontaktperson" />
          </columns>
       </TableView>
-      <Button layoutX="335.0" layoutY="645.0" mnemonicParsing="false" onAction="#lagreDataTilFil" text="LagreDataTilFil" />
+      <Button layoutX="374.0" layoutY="645.0" mnemonicParsing="false" onAction="#lagreDataTilFil" text="LagreDataTilFil" />
       <Button layoutX="767.0" layoutY="645.0" mnemonicParsing="false" onAction="#tilbakeTilStartside" text="Tilbake til startside" />
       <GridPane layoutX="6.0" layoutY="468.0" prefHeight="65.0" prefWidth="893.0">
         <columnConstraints>
@@ -94,6 +94,5 @@
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <Button layoutX="446.0" layoutY="645.0" mnemonicParsing="false" onAction="#lesUtDataTilFil" text="Les data til fil" />
    </children>
 </AnchorPane>

@@ -2,7 +2,7 @@ package sample;
 
 import java.io.*;
 
-public abstract class SkrivData {
+public abstract class SkrivData  {
 
 
     public static String getFileExtension(String fullName) {

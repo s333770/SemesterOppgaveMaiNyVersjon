@@ -134,17 +134,6 @@ public class bestillBiletterController extends SkrivData implements Initializabl
 
 
     }
-/*
-    public void lagreDataTilFil(javafx.event.ActionEvent actionEvent) throws FileNotFoundException {
-        FileChooser filvelger= new FileChooser();
-        File valgtFil= filvelger.showOpenDialog(null);
-        SkrivUtDataCSV csv= new SkrivUtDataCSV();
-        csv.skrivDataTilCSVFil(tableView.getSelectionModel().getSelectedItem());
-
-    }
-    */
-
-
 
     public void tilbakeTilStartside(javafx.event.ActionEvent actionEvent) throws IOException {
         FXMLLoader loader= new FXMLLoader();
@@ -159,7 +148,6 @@ public class bestillBiletterController extends SkrivData implements Initializabl
 
     public void setTabellVerdier(String arrangement, String type,String artister, String lokale, String dato, String tidspunkt,String bilettPris,String bilettsalg, String kontaktPerson){
         arrangementKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("arrangementSamlet"));
-        // leggTilDataObservableList(txtarrangement.getText(),txttype.getText(),txtartister.getText(), (String) choiceBox.getValue(),txtdato.getValue(),txttidspunkt.getText(),txtbilettpris.getText(),txtbilettsalg.getText(),txtkontaktPerson.getText());
         typeKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("typeSamlet"));
         artisterKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("artisterSamlet"));
         lokaleKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet,String>("lokaleSamlet"));
@@ -178,7 +166,6 @@ public class bestillBiletterController extends SkrivData implements Initializabl
         FileChooser filvelger = new FileChooser();
         File file = filvelger.showSaveDialog(null);
         String filType=SkrivData.getFileExtension(file.toString());
-        System.out.println(file);
         if(filType.equals("csv")){
             file.createNewFile();
             PrintWriter pw = new PrintWriter(file);
@@ -191,6 +178,18 @@ public class bestillBiletterController extends SkrivData implements Initializabl
             pw.println(tableView.getSelectionModel().getSelectedItem());
             pw.close();
         }
+        Thread t1 = new Thread(new LesData("object") {
+            @Override
+
+            public void lesData(Scanner input) throws FileNotFoundException {
+
+            }
+            @Override
+            public void run() {
+
+            }
+        });
+        t1.start();
 
     }
 }

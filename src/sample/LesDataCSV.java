@@ -12,6 +12,7 @@ import static sample.ArrangementKontakpersonSamlet.arrangementKontaktpersonSamle
 public class LesDataCSV extends LesData {
 
     public LesDataCSV(Scanner input) {
+        super();
         this.lesData(input);
     }
 

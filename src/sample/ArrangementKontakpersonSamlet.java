@@ -5,9 +5,10 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class ArrangementKontakpersonSamlet {
+public class ArrangementKontakpersonSamlet implements Serializable {
     public static ObservableList <ArrangementKontakpersonSamlet> arrangementKontaktpersonSamletObservableList= FXCollections.observableArrayList();
 
     private SimpleStringProperty typeSamlet;
@@ -158,8 +159,8 @@ public class ArrangementKontakpersonSamlet {
         this.bilettsalgSamlet.set(bilettsalgSamlet);
     }
 
-    public SimpleStringProperty getKontaktPersonSamlet() {
-        return kontaktPersonSamlet;
+    public String getKontaktPersonSamlet() {
+        return kontaktPersonSamlet.get();
     }
 
     public SimpleStringProperty kontaktPersonSamletProperty() {

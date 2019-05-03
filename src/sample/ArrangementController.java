@@ -2,6 +2,7 @@ package sample;
 
 import com.sun.javaws.exceptions.InvalidArgumentException;
 import com.sun.media.sound.InvalidFormatException;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,8 +38,6 @@ import static sample.Kontaktperson.kontaktpersonObservableList;
 
 
 public class ArrangementController implements Initializable {
-
-
 
     @FXML
     private TableView<ArrangementKontakpersonSamlet> tableView;
@@ -96,8 +95,6 @@ public class ArrangementController implements Initializable {
     @FXML
     Label personnummerLabelKontaktPerson;
     @FXML
-    Label telefonnummerLabelKontaktPerson;
-    @FXML
     Label emailLabelKontaktPerson;
     @FXML
     Label SideLabelKontaktPerson;
@@ -107,6 +104,7 @@ public class ArrangementController implements Initializable {
     Label AnnenInformasjonLabelKontaktPerson;
 
     Alert informasjonboks = new Alert(Alert.AlertType.INFORMATION);
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
 
     @FXML
@@ -124,7 +122,6 @@ public class ArrangementController implements Initializable {
             }
             Integer.parseInt(txtbilettpris.getText());
             Integer.parseInt(txtbilettsalg.getText());
-
             arrangementObservableList.add(new Arrangement(txtarrangement.getText(), txttype.getText(), txtartister.getText(), (String) choiceBox.getValue(), txtdato.getValue(), txttidspunkt.getText(), Integer.parseInt(txtbilettpris.getText()), Integer.parseInt(txtbilettsalg.getText()), txtkontaktPerson.getText()));
             setTabellVerdier("arrangement", "type", "artister", "lokale", "dato", "tidspunkt", "bilettpris", "bilettsalg", "kontaktPerson");
             kontaktpersonObservableList.add(new Kontaktperson(txtkontaktPerson.getText(), txtpersonnummer.getText(), txtemail.getText(), txtnettside.getText(), txtfirma.getText(), txtanneninfo.getText()));
@@ -132,14 +129,14 @@ public class ArrangementController implements Initializable {
 
         } catch (InputException e) {
             System.err.println(e.getMessage());
-            informasjonboks.setTitle("Feil i en av tekstboksene");
+            informasjonboks.setTitle("Feil i en av inputfeltene");
             informasjonboks.setContentText(e.getMessage());
             informasjonboks.show();
         }
         catch (NumberFormatException e){
             System.err.println(e.getMessage());
-            informasjonboks.setTitle("Feil i en av tekstboksene");
-            informasjonboks.setContentText("Bilettsalg og antall biletter må være på IntegerForm");
+            informasjonboks.setTitle("Feil i en av inputfeltene");
+            informasjonboks.setContentText("Bilettpris og antall ledige biletter må være på Integer-Form");
             informasjonboks.show();
         }
     }
@@ -159,15 +156,22 @@ public class ArrangementController implements Initializable {
                 LesData lesData = new LesDataCSV(input);
             }
 
-            if (filType.equals("jobj")) {
+            if (filType.equals("obj")) {
                 LesData lesData=new LesDataJOBJ(input);
-
-            } else {
-                throw new InvalidFormatException("Dette er ikke gyldige filtyper");
             }
+            if(!(filType.equals("csv"))){
+                throw new InvalidFormatException("Filtypen er av feil format");
+            }
+            if(!(filType.equals("obj"))){
+                throw new InvalidFormatException("Filtypen er av feil format");
+            }
+
         }
         catch(InvalidFormatException e){
             System.err.println(e.getMessage());
+            informasjonboks.setTitle("FormatFeil");
+            informasjonboks.setContentText(e.getMessage());
+            informasjonboks.show();
         }
         tableView.refresh();
     }
@@ -175,22 +179,30 @@ public class ArrangementController implements Initializable {
         FileChooser filvelger = new FileChooser();
         File fil = filvelger.showSaveDialog(null);
         String filType=SkrivData.getFileExtension(fil.toString());
-        System.out.println(tableView.getSelectionModel().getSelectedCells().get(0).getTableColumn());
+        System.out.println(filType);
 
         try {
             if (filType.equals("csv")) {
 
             }
-            if (filType.equals("obj")) {
-               // ArrangementKontakpersonSamlet skrivUt=new ArrangementKontakpersonSamlet(tableView.getSelectionModel().getSelectedItem().getArrangementSamlet().toString(),tableView.getSelectionModel().getSelectedItem().getArrangementSamlet().toString(),
 
-            } else {
-                throw new InvalidFormatException("Dette er ikke gyldige filtyper");
+            if (filType.equals("obj")) {
+                ArrangementKontakpersonSamlet ObjektSkrivUt=new ArrangementKontakpersonSamlet(tableView.getSelectionModel().getSelectedItem().getArrangementSamlet().toString(),tableView.getSelectionModel().getSelectedItem().getTypeSamlet().toString(),tableView.getSelectionModel().getSelectedItem().getArtisterSamlet().toString(),tableView.getSelectionModel().getSelectedItem().getLokaleSamlet().toString(),
+                        LocalDate.parse(tableView.getSelectionModel().getSelectedItem().getDatoSamlet().toString(),formatter),tableView.getSelectionModel().getSelectedItem().getTidspunktSamlet().toString(),tableView.getSelectionModel().getSelectedItem().getBilettprisSamlet().intValue(),tableView.getSelectionModel().getSelectedItem().getBilettsalgSamlet().intValue(),
+                        tableView.getSelectionModel().getSelectedItem().getKontaktPersonSamlet().toString(),tableView.getSelectionModel().getSelectedItem().getPersonNummerSamlet().toString(),tableView.getSelectionModel().getSelectedItem().getPersonEmailSamlet().toString(),tableView.getSelectionModel().getSelectedItem().getPersonSideSamlet().toString(),
+                        tableView.getSelectionModel().getSelectedItem().getPersonFirmaSamlet().toString(),tableView.getSelectionModel().getSelectedItem().getPersonTekstSamlet().toString());
+                System.out.println(tableView.getSelectionModel().getSelectedItem().getDatoSamlet().toString());
+                SkrivData skrivData=new SkrivUtDataJOBJ(ObjektSkrivUt, fil);
             }
+
         }
-        catch(InvalidFormatException e){
+        catch(Exception e){
             System.err.println(e.getMessage());
+            informasjonboks.setTitle("FormatFeil");
+            informasjonboks.setContentText(e.getMessage());
+            informasjonboks.show();
         }
+        tableView.refresh();
         tableView.refresh();
     }
         @FXML
@@ -201,6 +213,7 @@ public class ArrangementController implements Initializable {
             if(valgtArrangement==null){
                 throw new ElementIkkeValgtException("Du må velge et element for å få informasjon om kontaktperson");
             }
+            navnLabelKontaktPerson.setText(valgtArrangement.getKontaktPersonSamlet());
             personnummerLabelKontaktPerson.setText(valgtArrangement.getPersonNummerSamlet());
             emailLabelKontaktPerson.setText(valgtArrangement.getPersonEmailSamlet());
             SideLabelKontaktPerson.setText(valgtArrangement.getPersonSideSamlet());
@@ -209,13 +222,11 @@ public class ArrangementController implements Initializable {
         }
         catch(ElementIkkeValgtException e){
             System.err.println(e.getMessage());
-            informasjonboks.setTitle("Feil i en av tekstboksene");
+            informasjonboks.setTitle("Velg et element i tabellen");
             informasjonboks.setContentText(e.getMessage());
             informasjonboks.show();
         }
-
     }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (arrangementObservableList.size() > 0) {
@@ -238,7 +249,6 @@ public class ArrangementController implements Initializable {
     }
     public void setTabellVerdier(String arrangement, String type, String artister, String lokale, String dato, String tidspunkt, String bilettPris, String bilettsalg, String kontaktPerson) {
         arrangementKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet, String>("arrangementSamlet"));
-        // leggTilDataObservableList(txtarrangement.getText(),txttype.getText(),txtartister.getText(), (String) choiceBox.getValue(),txtdato.getValue(),txttidspunkt.getText(),txtbilettpris.getText(),txtbilettsalg.getText(),txtkontaktPerson.getText());
         typeKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet, String>("typeSamlet"));
         artisterKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet, String>("artisterSamlet"));
         lokaleKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet, String>("lokaleSamlet"));
@@ -248,14 +258,12 @@ public class ArrangementController implements Initializable {
         bilettsalgKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet, Integer>("bilettsalgSamlet"));
         kontaktPersonKolonne.setCellValueFactory(new PropertyValueFactory<ArrangementKontakpersonSamlet, String>("kontaktPersonSamlet"));
     }
-/*
-    public void endreArrangementNavn(TableColumn.CellEditEvent edittedCell) {
-        ArrangementKontakpersonSamlet valgtArrangement = tableView.getSelectionModel().getSelectedItem(); // Tar det elementet du trykker på
-        valgtArrangement.setArrangementSamlet(edittedCell.getNewValue().toString());
-    }
-    */
+
     public void slettArrangement(javafx.event.ActionEvent actionEvent){
-        tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedCells());
+        ObservableList<ArrangementKontakpersonSamlet> listeAvValgteElementer, alleElementer;
+        alleElementer=tableView.getItems();
+        listeAvValgteElementer=tableView.getSelectionModel().getSelectedItems();
+        listeAvValgteElementer.forEach(alleElementer::remove);
         tableView.refresh();
     }
 
